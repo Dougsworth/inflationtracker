@@ -22,6 +22,13 @@ this year's basket grown by your rate (plus an optional real-growth target).
 
 Nothing is sent anywhere — the maths runs in the browser and no data leaves the device.
 
+**Export CSV** writes out the basket, each category's rate and contribution, and the summary
+figures, so the numbers can be checked or reused in a spreadsheet. If the browser blocks the
+download (some embedded viewers do) it falls back to copying the CSV to the clipboard.
+
+Spend fields accept digits only — letters, signs, decimals and pasted junk are stripped on the
+way in, and values are capped at eight digits.
+
 ## Data
 
 | Division | 12-month rate |
@@ -56,4 +63,3 @@ npx vercel --prod   # production
 ```
 
 Or drag this folder onto https://vercel.com/new.
-# inflationtracker

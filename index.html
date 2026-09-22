@@ -51,6 +51,32 @@
   .insight .bulb .gi{width:18px;height:18px;margin-top:1px}
   .bcard .ico .gi{width:20px;height:20px}
 
+  /* ---------- motion ---------- */
+  @keyframes rise{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+  @keyframes pop{0%{transform:scale(1)}40%{transform:scale(1.045)}100%{transform:scale(1)}}
+  .card,.results,.bcard{animation:rise .55s cubic-bezier(.22,.7,.3,1) both}
+  .results{animation-delay:.07s} .bottom .bcard:first-child{animation-delay:.14s}
+  .bottom .bcard:last-child{animation-delay:.2s}
+  .fill{transition:width .45s cubic-bezier(.22,.7,.3,1),background-color .3s}
+  .driver{animation:rise .35s cubic-bezier(.22,.7,.3,1) both}
+  .ratebox .n.bump{animation:pop .42s cubic-bezier(.3,1.4,.5,1)}
+  .row input{transition:border-color .16s,box-shadow .16s}
+  .row input:focus{outline:none;border-color:var(--green);box-shadow:0 0 0 3px rgba(34,197,94,.16)}
+  .reset,.export{transition:color .16s,background-color .16s,border-color .16s}
+
+  /* ---------- export ---------- */
+  .actions{display:flex;justify-content:flex-end;margin-top:18px}
+  .export{display:inline-flex;align-items:center;gap:8px;font:inherit;font-size:13.5px;font-weight:600;
+    color:#CBD5E1;background:rgba(255,255,255,.06);border:1px solid var(--dark-line);
+    border-radius:9px;padding:9px 14px;cursor:pointer}
+  .export:hover{background:rgba(255,255,255,.11);color:#fff;border-color:rgba(255,255,255,.26)}
+  .export .gi{width:15px;height:15px}
+  .export.done{color:#5EE9A0;border-color:rgba(34,197,94,.4);background:rgba(34,197,94,.14)}
+
+  @media (prefers-reduced-motion:reduce){
+    *{animation:none!important}
+  }
+
   /* ---------- hero ---------- */
   .hero{
     position:relative;background:var(--navy) url("hero.jpg") 58% 56%/cover no-repeat;
@@ -61,12 +87,13 @@
     background:linear-gradient(95deg,#0B1220 0%,rgba(11,18,32,.96) 24%,rgba(11,18,32,.80) 40%,rgba(11,18,32,.46) 58%,rgba(11,18,32,.30) 76%,rgba(11,18,32,.48) 100%);
   }
   .hero .inner{position:relative;padding-block:0 40px}
-  .script{position:absolute;top:84px;right:26px;z-index:2;text-align:center;
-    font-family:"Caveat",ui-rounded,"Segoe Script",cursive;font-size:30px;line-height:1.16;
-    color:#fff;text-shadow:0 2px 14px rgba(11,18,32,.75);transform:rotate(-4deg);pointer-events:none}
+  .natcol{display:flex;flex-direction:column;align-items:flex-end;gap:12px;min-width:0}
+  .natcol .natcard{width:100%}
+  .script{text-align:center;margin-right:8px;
+    font-family:"Caveat",ui-rounded,"Segoe Script",cursive;font-size:27px;line-height:1.1;
+    color:#fff;text-shadow:0 2px 14px rgba(11,18,32,.7);transform:rotate(-2.5deg);pointer-events:none}
   .script i{display:block;font-style:normal}
-  .script svg{display:block;width:150px;height:12px;margin:2px auto 0}
-  @media (max-width:1180px){.script{font-size:25px;top:74px}.script svg{width:124px}}
+  .script svg{display:block;width:172px;height:11px;margin:1px auto 0}
   nav{display:flex;align-items:center;justify-content:space-between;gap:16px;padding-block:20px}
   .brand{display:flex;align-items:center;gap:10px;font-size:20px;font-weight:700;letter-spacing:-.01em}
   .navlinks{display:flex;align-items:center;gap:26px}
@@ -74,7 +101,7 @@
   .navlinks a:hover{color:#fff}
   .pill-jmd{border:1px solid rgba(255,255,255,.22);border-radius:999px;padding:7px 14px;font-size:14px;color:#fff}
 
-  .herogrid{display:grid;grid-template-columns:1.05fr .95fr;gap:40px;align-items:end;padding-top:28px}
+  .herogrid{display:grid;grid-template-columns:1.05fr .95fr;gap:40px;align-items:end;padding-top:24px}
   h1{
     font-size:clamp(34px,5vw,56px);line-height:1.05;letter-spacing:-.025em;font-weight:750;
     margin:0 0 18px;text-wrap:balance;
@@ -93,13 +120,14 @@
   .badge span{font-size:12.5px;color:#94A3B8}
 
   .natcard{
-    background:rgba(12,19,33,.82);border:1px solid rgba(255,255,255,.12);border-radius:14px;
-    padding:20px;backdrop-filter:blur(6px);
+    background:rgba(12,19,33,.84);border:1px solid rgba(255,255,255,.12);border-radius:14px;
+    padding:22px;backdrop-filter:blur(6px);
   }
-  .natcard .top{display:flex;justify-content:space-between;align-items:baseline;gap:12px}
+  .natcard .top{display:flex;justify-content:space-between;align-items:baseline;gap:16px}
+  .natcard .top span{white-space:nowrap}
   .natcard .top b{font-size:15.5px;font-weight:600}
   .natcard .top span{font-size:13px;color:var(--dark-muted)}
-  .natfig{display:flex;align-items:baseline;gap:14px;margin-top:8px}
+  .natfig{display:flex;align-items:baseline;gap:14px;margin-top:10px}
   .natfig .n{font-size:46px;font-weight:750;letter-spacing:-.03em;font-variant-numeric:tabular-nums;line-height:1}
   .natfig .d{color:var(--coral);font-size:15px;font-weight:600}
   .natfig .d small{display:block;color:var(--dark-muted);font-weight:400;font-size:12.5px}
@@ -133,7 +161,9 @@
   .row input{
     width:100%;text-align:left;font:inherit;font-size:15px;padding:9px 11px;border:1px solid var(--line);
     border-radius:8px;background:var(--card);color:var(--text);font-variant-numeric:tabular-nums;
+    appearance:textfield;
   }
+  .row input::-webkit-outer-spin-button,.row input::-webkit-inner-spin-button{appearance:none;margin:0}
   .rate{justify-self:end;font-size:13px;font-weight:600;border-radius:999px;padding:4px 10px;
     font-variant-numeric:tabular-nums}
   .rate.high{background:rgba(255,98,98,.14);color:#D2453B}
@@ -211,10 +241,6 @@
 <body>
 <header class="hero">
   <div class="inner">
-    <div class="script" aria-hidden="true">
-      <i>Same</i><i>Jamaica.</i><i>Different</i><i>Realities.</i>
-      <svg viewBox="0 0 150 12" fill="none"><path d="M3 8C34 3 96 2 147 6" stroke="#FFCC29" stroke-width="3.2" stroke-linecap="round"/></svg>
-    </div>
     <nav>
       <span class="brand"><span class="flag" data-icon="flag"></span>My Inflation Rate</span>
       <span class="navlinks">
@@ -235,6 +261,11 @@
         </div>
       </div>
 
+      <div class="natcol">
+        <div class="script" aria-hidden="true">
+          <i>Same Jamaica.</i><i>Different Realities.</i>
+          <svg viewBox="0 0 190 12" fill="none"><path d="M3 8C42 3 122 2 187 6" stroke="#FFCC29" stroke-width="3" stroke-linecap="round"/></svg>
+        </div>
       <div class="natcard">
         <div class="top"><b>Jamaica inflation (national average)</b><span>August 2026</span></div>
         <div class="natfig">
@@ -247,6 +278,7 @@
           <div><span class="nmi" style="color:#7DBCF5" data-icon="housing"></span><span><b style="color:#7DBCF5">4.8%</b><span>Housing</span></span></div>
         </div>
         <p class="natsrc">Source: STATIN Consumer Price Index, August 2026</p>
+      </div>
       </div>
     </div>
   </div>
@@ -294,6 +326,9 @@
       <h3>What's driving your inflation?</h3>
       <div id="drivers"></div>
       <div class="insight"><span class="bulb" data-icon="bulb"></span><span id="insight"></span></div>
+      <div class="actions">
+        <button class="export" id="export" type="button"><span data-icon="dl"></span><span id="exportLabel">Export CSV</span></button>
+      </div>
     </section>
   </div>
 
@@ -352,6 +387,7 @@ const ICONS = {
   undo:  ['0 0 24 24','<path d="M4.5 3.9a1.05 1.05 0 0 1 1.05 1.05v2.2A8.6 8.6 0 1 1 3.45 13a1.05 1.05 0 1 1 2.09.22A6.5 6.5 0 1 0 7.3 8.35H9.4a1.05 1.05 0 0 1 0 2.1H4.5A1.05 1.05 0 0 1 3.45 9.4V4.95A1.05 1.05 0 0 1 4.5 3.9z"/>'],
   info:  ['0 0 24 24','<path d="M12 2.6a9.4 9.4 0 1 0 0 18.8 9.4 9.4 0 0 0 0-18.8zm0 3.4a1.35 1.35 0 1 1 0 2.7 1.35 1.35 0 0 1 0-2.7zm0 4.3a1.1 1.1 0 0 1 1.1 1.1v5.3a1.1 1.1 0 0 1-2.2 0v-5.3A1.1 1.1 0 0 1 12 10.3z"/>'],
   up:    ['0 0 24 24','<path d="M12 3.6a1.1 1.1 0 0 1 .82.37l5.6 6.3a1.1 1.1 0 0 1-1.64 1.46l-3.68-4.14V19.3a1.1 1.1 0 0 1-2.2 0V7.59l-3.68 4.14a1.1 1.1 0 1 1-1.64-1.46l5.6-6.3A1.1 1.1 0 0 1 12 3.6z"/>'],
+  dl:    ['0 0 24 24','<path d="M12 2.6a1.15 1.15 0 0 1 1.15 1.15v9.06l2.79-2.79a1.15 1.15 0 0 1 1.62 1.62l-4.75 4.75a1.15 1.15 0 0 1-1.62 0L6.44 11.64a1.15 1.15 0 0 1 1.62-1.62l2.79 2.79V3.75A1.15 1.15 0 0 1 12 2.6z"/><path d="M4 15.1a1.15 1.15 0 0 1 1.15 1.15v2.1a.5.5 0 0 0 .5.5h12.7a.5.5 0 0 0 .5-.5v-2.1a1.15 1.15 0 0 1 2.3 0v2.1a2.8 2.8 0 0 1-2.8 2.8H5.65a2.8 2.8 0 0 1-2.8-2.8v-2.1A1.15 1.15 0 0 1 4 15.1z"/>'],
   flag:  ['0 0 32 22','<defs><clipPath id="jaflag"><rect width="32" height="22" rx="3.2"/></clipPath></defs><g clip-path="url(#jaflag)"><rect width="32" height="22" fill="#009B3A"/><path d="M0 0 11.6 11 0 22z" fill="#111"/><path d="M32 0 20.4 11 32 22z" fill="#111"/><path d="M0 0 32 22M32 0 0 22" stroke="#FFCC29" stroke-width="4.6" fill="none"/></g>']
 };
 const ic = n => { const d = ICONS[n]; return d ? `<svg class="gi" viewBox="${d[0]}" fill="currentColor" aria-hidden="true">${d[1]}</svg>` : ""; };
@@ -370,48 +406,100 @@ const CATS = [
 document.querySelectorAll("[data-icon]").forEach(e => { e.innerHTML = ic(e.dataset.icon); });
 
 const HEADLINE = 7.9;
-const $ = id => document.getElementById(id);
+const MAX_SPEND = 99999999;              // 8 digits; anything longer is a typo, not a budget
+const $  = id => document.getElementById(id);
 const jd = n => "J$" + Math.round(n).toLocaleString("en-JM");
+const grp = n => Number(n).toLocaleString("en-JM");
+const calm = matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+/* Only digits ever survive. Letters, "e", "-", "+", ".", pasted junk and
+   over-long numbers are stripped before they can reach the maths. */
+const onlyDigits = s => String(s).replace(/\D+/g, "").replace(/^0+(?=\d)/, "").slice(0, 8);
+const readSpend = el => { const d = onlyDigits(el.value); return d ? Math.min(MAX_SPEND, +d) : 0; };
+
+function sanitise(el){
+  const before = el.value, caretFromEnd = before.length - (el.selectionStart ?? before.length);
+  const d = onlyDigits(before);
+  const after = d ? grp(d) : "";
+  if (after !== before){
+    el.value = after;
+    const pos = Math.max(0, after.length - caretFromEnd);
+    try { el.setSelectionRange(pos, pos); } catch(e){}
+  }
+}
+
+/* count-up, used on first paint and on reset only — mid-typing it would just be noise */
+function countTo(el, to, render, ms = 620){
+  if (calm){ el.textContent = render(to); return; }
+  const from = 0, t0 = performance.now();
+  const step = now => {
+    const k = Math.min(1, (now - t0) / ms);
+    const e = 1 - Math.pow(1 - k, 3);
+    el.textContent = render(from + (to - from) * e);
+    if (k < 1) requestAnimationFrame(step);
+  };
+  requestAnimationFrame(step);
+}
 
 $("inputs").innerHTML = CATS.map(c => {
   const cls = c.rate >= 8 ? "high" : c.rate <= 5 ? "low" : "mid";
   return `<div class="row">
     <span class="tile" style="background:${c.tint};color:${c.bar}">${ic(c.icon)}</span>
     <label for="${c.k}">${c.name}</label>
-    <input id="${c.k}" type="number" min="0" step="500" inputmode="numeric" value="${c.start}">
+    <input id="${c.k}" type="text" inputmode="numeric" autocomplete="off" spellcheck="false"
+           maxlength="11" value="${grp(c.start)}" aria-label="${c.name}, monthly spend in Jamaican dollars">
     <span class="rate ${cls}">${c.rate.toFixed(1)}%</span>
   </div>`;
 }).join("");
 
-function calc(){
+let LAST = null;        // most recent result, for the CSV export
+let driversKey = "";    // lets the bars animate instead of being rebuilt each keystroke
+
+function calc(opts = {}){
+  const grow = !!opts.grow;
   let now = 0, then = 0;
   const parts = CATS.map(c => {
-    const spend = Math.max(0, parseFloat($(c.k).value) || 0);
+    const spend = readSpend($(c.k));
     const was = spend / (1 + c.rate / 100);
     now += spend; then += was;
     return { ...c, spend, rise: spend - was };
   });
 
   if (then === 0){
+    LAST = null; driversKey = "";
     $("rate").textContent = "—";
     $("verdict").textContent = "Enter what you spend to see your rate";
     ["permonth","peryear","needed","needed2"].forEach(id => $(id).textContent = "—");
     $("drivers").innerHTML = ""; $("insight").textContent = ""; $("neededNote").textContent = "";
+    $("export").disabled = true;
     return;
   }
+  $("export").disabled = false;
 
   const mine = (now / then - 1) * 100;
   const gap = mine - HEADLINE;
-  $("rate").textContent = mine.toFixed(1) + "%";
-  $("rate").style.color = gap > 0.05 ? "#FF8B8B" : "#5EE9A0";
+  const rateEl = $("rate");
+  if (grow) countTo(rateEl, mine, v => v.toFixed(1) + "%");
+  else {
+    if (rateEl.textContent !== mine.toFixed(1) + "%" && !calm){
+      rateEl.classList.remove("bump"); void rateEl.offsetWidth; rateEl.classList.add("bump");
+    }
+    rateEl.textContent = mine.toFixed(1) + "%";
+  }
+  rateEl.style.color = gap > 0.05 ? "#FF8B8B" : "#5EE9A0";
   $("verdict").textContent = Math.abs(gap) < 0.05
     ? "Your personal inflation rate — the same as the national 7.9%"
     : gap > 0
       ? `Your personal inflation rate — ${gap.toFixed(1)} points above the national 7.9%`
       : `Your personal inflation rate — ${Math.abs(gap).toFixed(1)} points below the national 7.9%`;
 
-  $("permonth").textContent = jd(now - then);
-  $("peryear").textContent  = jd((now - then) * 12);
+  if (grow){
+    countTo($("permonth"), now - then, jd);
+    countTo($("peryear"), (now - then) * 12, jd);
+  } else {
+    $("permonth").textContent = jd(now - then);
+    $("peryear").textContent  = jd((now - then) * 12);
+  }
 
   const ranked = parts.map(p => ({ ...p, pts: p.rise / then * 100 }))
     .filter(p => p.spend > 0).sort((a, b) => b.pts - a.pts);
@@ -422,13 +510,27 @@ function calc(){
     : top;
   const max = Math.max(...shown.map(s => s.pts), 0.01);
 
-  $("drivers").innerHTML = shown.map(s => `
-    <div class="driver">
-      <span class="dic" style="color:${s.bar}">${ic(s.icon)}</span>
-      <span class="nm">${s.short}</span>
-      <span class="track"><span class="fill" style="width:${Math.max(4, s.pts / max * 100)}%;background:${s.bar}"></span></span>
-      <span class="pts">${s.pts.toFixed(1)}%</span>
-    </div>`).join("");
+  const key = shown.map(s => s.short).join("|");
+  if (key !== driversKey){
+    driversKey = key;
+    $("drivers").innerHTML = shown.map((s, i) => `
+      <div class="driver" style="animation-delay:${i * 45}ms">
+        <span class="dic" style="color:${s.bar}">${ic(s.icon)}</span>
+        <span class="nm">${s.short}</span>
+        <span class="track"><span class="fill" style="width:0;background:${s.bar}"></span></span>
+        <span class="pts">${s.pts.toFixed(1)}%</span>
+      </div>`).join("");
+    const fills = $("drivers").querySelectorAll(".fill");
+    requestAnimationFrame(() => shown.forEach((s, i) => {
+      fills[i].style.width = Math.max(4, s.pts / max * 100) + "%";
+    }));
+  } else {
+    const rows = $("drivers").children;
+    shown.forEach((s, i) => {
+      rows[i].querySelector(".fill").style.width = Math.max(4, s.pts / max * 100) + "%";
+      rows[i].querySelector(".pts").textContent = s.pts.toFixed(1) + "%";
+    });
+  }
 
   if (ranked.length > 1){
     const two = ranked.slice(0, 2), share = two[0].pts + two[1].pts;
@@ -437,21 +539,102 @@ function calc(){
     $("insight").textContent = `${ranked[0].short} accounts for your whole increase.`;
   }
 
-  const uplift = mine / 100 + parseFloat($("target").value) / 100;
+  const target = parseFloat($("target").value);
+  const uplift = mine / 100 + target / 100;
   const needed = now * (1 + uplift);
-  $("needed").textContent = jd(needed);
+  if (grow){
+    countTo($("needed"), needed, jd);
+    countTo($("needed2"), needed, jd);
+  } else {
+    $("needed").textContent = jd(needed);
+    $("needed2").textContent = jd(needed);
+  }
   $("neededNote").textContent = `Recommended monthly income (+${(uplift * 100).toFixed(1)}%)`;
-  $("needed2").textContent = jd(needed);
+
+  LAST = { parts, ranked, now, then, mine, target, uplift, needed };
 }
 
-CATS.forEach(c => $(c.k).addEventListener("input", calc));
-$("target").addEventListener("change", calc);
-$("reset").addEventListener("click", () => {
-  CATS.forEach(c => $(c.k).value = c.start);
-  $("target").value = "0";
-  calc();
+CATS.forEach(c => {
+  const el = $(c.k);
+  el.addEventListener("input", () => { sanitise(el); calc(); });
+  el.addEventListener("blur", () => { if (!el.value) el.value = "0"; });
+  // belt and braces: never let a stray keystroke land in the field at all
+  el.addEventListener("keydown", e => {
+    if (e.key.length === 1 && !e.ctrlKey && !e.metaKey && !/\d/.test(e.key)) e.preventDefault();
+  });
 });
-calc();
+$("target").addEventListener("change", () => calc());
+$("reset").addEventListener("click", () => {
+  CATS.forEach(c => $(c.k).value = grp(c.start));
+  $("target").value = "0";
+  driversKey = "";
+  calc({ grow: true });
+});
+
+/* ---------- CSV export ---------- */
+const csvCell = v => {
+  const s = String(v);
+  return /[",\n]/.test(s) ? '"' + s.replace(/"/g, '""') + '"' : s;
+};
+
+function buildCsv(){
+  const L = LAST;
+  if (!L) return "";
+  const r2 = n => n.toFixed(2);
+  const rows = [
+    ["My Inflation Rate — personal inflation estimate"],
+    ["Generated", new Date().toISOString().slice(0, 10)],
+    ["Rate source", "STATIN Consumer Price Index, August 2026"],
+    [],
+    ["National inflation (%)", HEADLINE.toFixed(1)],
+    ["Your personal inflation rate (%)", L.mine.toFixed(1)],
+    ["Difference vs national (points)", (L.mine - HEADLINE).toFixed(1)],
+    [],
+    ["Monthly basket now (J$)", r2(L.now)],
+    ["Same basket a year ago (J$)", r2(L.then)],
+    ["Extra per month (J$)", r2(L.now - L.then)],
+    ["Extra per year (J$)", r2((L.now - L.then) * 12)],
+    [],
+    ["Target real growth (%)", L.target.toFixed(1)],
+    ["Monthly income needed (J$)", r2(L.needed)],
+    [],
+    ["Category", "Monthly spend (J$)", "Category inflation (%)",
+     "Same spend a year ago (J$)", "Increase (J$)", "Contribution (percentage points)"]
+  ];
+  L.parts.forEach(p => rows.push([
+    p.name, r2(p.spend), p.rate.toFixed(1),
+    r2(p.spend - p.rise), r2(p.rise),
+    L.then ? (p.rise / L.then * 100).toFixed(2) : "0.00"
+  ]));
+  rows.push([]);
+  rows.push(["Note", "Each category is deflated by its own 12-month rate; the contributions sum to your personal rate."]);
+  return rows.map(r => r.map(csvCell).join(",")).join("\r\n");
+}
+
+function flashExport(text){
+  const lab = $("exportLabel"), btn = $("export"), was = lab.textContent;
+  lab.textContent = text; btn.classList.add("done");
+  setTimeout(() => { lab.textContent = was; btn.classList.remove("done"); }, 2200);
+}
+
+$("export").addEventListener("click", async () => {
+  const csv = buildCsv();
+  if (!csv) return;
+  const name = `my-inflation-rate-${new Date().toISOString().slice(0, 10)}.csv`;
+  try {
+    const url = URL.createObjectURL(new Blob(["\ufeff" + csv], { type: "text/csv;charset=utf-8" }));
+    const a = Object.assign(document.createElement("a"), { href: url, download: name });
+    document.body.appendChild(a); a.click(); a.remove();
+    setTimeout(() => URL.revokeObjectURL(url), 1500);
+    flashExport("Downloaded");
+  } catch (err) {
+    // some embedded viewers block downloads outright — hand it over another way
+    try { await navigator.clipboard.writeText(csv); flashExport("Copied to clipboard"); }
+    catch (e2) { flashExport("Couldn't export"); }
+  }
+});
+
+calc({ grow: true });
 </script>
 
 </body>
