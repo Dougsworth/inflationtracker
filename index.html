@@ -1,0 +1,410 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Jamaica's inflation rate is an average. Work out your own from what you actually spend, using STATIN's latest category rates.">
+<meta name="theme-color" content="#0B1220">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>%F0%9F%87%AF%F0%9F%87%B2</text></svg>">
+<meta property="og:title" content="My Inflation Rate — Jamaica">
+<meta property="og:description" content="Because the average isn't your reality. Find your personal inflation rate in under a minute.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="hero.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<title>My Inflation Rate</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#0B1220; --navy-2:#0F274A; --gold:#FFCC29; --green:#22C55E;
+    --mint:#EBF5E9; --surface:#FFFFFF; --coral:#FF6262; --blue:#4295E8; --orange:#F59E0B;
+    --card:#FFFFFF; --text:#0B1220; --muted:#5A6572; --line:#E3E8EF;
+    --dark-card:#0E1524; --dark-inner:#151D2E; --dark-line:#22293A; --dark-muted:#94A3B8;
+    color-scheme:light;
+  }
+
+  *{box-sizing:border-box}
+  body{
+    margin:0;background:var(--surface);color:var(--text);
+    font-family:system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    font-size:16px;line-height:1.5;padding:0;
+  }
+  .inner{max-width:1180px;margin:0 auto;padding-inline:20px}
+
+  /* ---------- hero ---------- */
+  .hero{
+    position:relative;background:var(--navy) url("hero.jpg") 58% 56%/cover no-repeat;
+    color:#fff;overflow:hidden;
+  }
+  .hero::before{
+    content:"";position:absolute;inset:0;
+    background:linear-gradient(95deg,#0B1220 0%,rgba(11,18,32,.96) 24%,rgba(11,18,32,.80) 40%,rgba(11,18,32,.46) 58%,rgba(11,18,32,.30) 76%,rgba(11,18,32,.48) 100%);
+  }
+  .hero .inner{position:relative;padding-block:0 40px}
+  .script{position:absolute;top:84px;right:26px;z-index:2;text-align:center;
+    font-family:"Caveat",ui-rounded,"Segoe Script",cursive;font-size:30px;line-height:1.16;
+    color:#fff;text-shadow:0 2px 14px rgba(11,18,32,.75);transform:rotate(-4deg);pointer-events:none}
+  .script i{display:block;font-style:normal}
+  .script svg{display:block;width:150px;height:12px;margin:2px auto 0}
+  @media (max-width:1180px){.script{font-size:25px;top:74px}.script svg{width:124px}}
+  nav{display:flex;align-items:center;justify-content:space-between;gap:16px;padding-block:20px}
+  .brand{display:flex;align-items:center;gap:10px;font-size:20px;font-weight:700;letter-spacing:-.01em}
+  .navlinks{display:flex;align-items:center;gap:26px}
+  .navlinks a{color:#D6DEE9;text-decoration:none;font-size:14.5px}
+  .navlinks a:hover{color:#fff}
+  .pill-jmd{border:1px solid rgba(255,255,255,.22);border-radius:999px;padding:7px 14px;font-size:14px;color:#fff}
+
+  .herogrid{display:grid;grid-template-columns:1.05fr .95fr;gap:40px;align-items:end;padding-top:28px}
+  h1{
+    font-size:clamp(34px,5vw,56px);line-height:1.05;letter-spacing:-.025em;font-weight:750;
+    margin:0 0 18px;text-wrap:balance;
+  }
+  h1 em{font-style:normal;color:var(--gold)}
+  .lede{margin:0 0 26px;color:#CBD5E1;font-size:17px;max-width:46ch}
+  .badges{display:flex;flex-wrap:wrap;gap:26px}
+  .badge{display:flex;align-items:center;gap:11px}
+  .badge .ico{
+    width:38px;height:38px;border-radius:50%;display:grid;place-items:center;font-size:17px;flex:0 0 auto;
+  }
+  .badge .ico.g{background:rgba(34,197,94,.16)}
+  .badge .ico.y{background:rgba(255,204,41,.16)}
+  .badge .ico.b{background:rgba(66,149,232,.16)}
+  .badge b{display:block;font-size:14.5px;font-weight:600}
+  .badge span{font-size:12.5px;color:#94A3B8}
+
+  .natcard{
+    background:rgba(12,19,33,.82);border:1px solid rgba(255,255,255,.12);border-radius:14px;
+    padding:20px;backdrop-filter:blur(6px);
+  }
+  .natcard .top{display:flex;justify-content:space-between;align-items:baseline;gap:12px}
+  .natcard .top b{font-size:15.5px;font-weight:600}
+  .natcard .top span{font-size:13px;color:var(--dark-muted)}
+  .natfig{display:flex;align-items:baseline;gap:14px;margin-top:8px}
+  .natfig .n{font-size:46px;font-weight:750;letter-spacing:-.03em;font-variant-numeric:tabular-nums;line-height:1}
+  .natfig .d{color:var(--coral);font-size:15px;font-weight:600}
+  .natfig .d small{display:block;color:var(--dark-muted);font-weight:400;font-size:12.5px}
+  .natmini{
+    display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:16px;
+    background:rgba(255,255,255,.05);border-radius:10px;padding:12px;
+  }
+  .natmini div{display:flex;align-items:center;gap:9px}
+  .natmini b{display:block;font-size:19px;font-variant-numeric:tabular-nums;line-height:1.15}
+  .natmini span{font-size:12px;color:var(--dark-muted)}
+  .natsrc{margin:12px 0 0;font-size:12px;color:var(--dark-muted)}
+
+  /* ---------- body ---------- */
+  main{padding-block:34px 56px}
+  .cols{display:grid;grid-template-columns:1fr 1fr;gap:22px;align-items:start}
+  .cols>*,.bottom>*{min-width:0}
+
+  .card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:24px;
+    box-shadow:0 1px 3px rgba(11,18,32,.06),0 8px 24px -16px rgba(11,18,32,.18)}
+  .card h2{margin:0;font-size:22px;font-weight:700;letter-spacing:-.01em}
+  .card .sub{margin:4px 0 18px;color:var(--muted);font-size:14px}
+  .cardhead{display:flex;justify-content:space-between;align-items:flex-start;gap:12px}
+  .reset{border:none;background:none;color:var(--muted);font:inherit;font-size:14px;cursor:pointer;padding:4px;white-space:nowrap;flex:0 0 auto}
+  .reset:hover{color:var(--text)}
+
+  .row{display:grid;grid-template-columns:44px 1fr 132px 62px;gap:12px;align-items:center;
+    padding:9px 0;border-bottom:1px solid var(--line)}
+  .row:last-of-type{border-bottom:none}
+  .tile{width:38px;height:38px;border-radius:10px;display:grid;place-items:center;font-size:18px}
+  .row label{font-size:15px;min-width:0;overflow-wrap:anywhere}
+  .row input{
+    width:100%;text-align:left;font:inherit;font-size:15px;padding:9px 11px;border:1px solid var(--line);
+    border-radius:8px;background:var(--card);color:var(--text);font-variant-numeric:tabular-nums;
+  }
+  .rate{justify-self:end;font-size:13px;font-weight:600;border-radius:999px;padding:4px 10px;
+    font-variant-numeric:tabular-nums}
+  .rate.high{background:rgba(255,98,98,.14);color:#D2453B}
+  .rate.low{background:rgba(34,197,94,.16);color:#15803D}
+  .rate.mid{background:rgba(90,101,114,.12);color:var(--muted)}
+  .foot{display:flex;gap:9px;margin:18px 0 0;color:var(--muted);font-size:13px}
+
+  .results{background:var(--dark-card);border:1px solid var(--dark-line);border-radius:14px;padding:24px;color:#fff}
+  .results h2{color:#fff}
+  .results .sub{color:var(--dark-muted)}
+  .tagpill{background:rgba(34,197,94,.18);color:#5EE9A0;border-radius:999px;padding:5px 13px;font-size:13px;font-weight:600}
+  .ratebox{background:var(--dark-inner);border:1px solid var(--dark-line);border-radius:12px;
+    padding:26px 20px;text-align:center;margin-bottom:16px}
+  .ratebox .n{font-size:56px;font-weight:750;letter-spacing:-.03em;color:#5EE9A0;line-height:1;font-variant-numeric:tabular-nums}
+  .ratebox .l{color:var(--dark-muted);font-size:14.5px;margin-top:8px}
+  .twin{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  .twin>div{min-width:0}
+  .twin b{overflow-wrap:anywhere}
+  .twin div{background:var(--dark-inner);border:1px solid var(--dark-line);border-radius:12px;padding:16px;
+    display:flex;gap:12px;align-items:flex-start}
+  .twin .ico{width:38px;height:38px;border-radius:9px;display:grid;place-items:center;font-size:17px;flex:0 0 auto}
+  .twin b{display:block;font-size:21px;font-variant-numeric:tabular-nums;letter-spacing:-.01em}
+  .twin .k{font-size:13.5px;color:#E2E8F0}
+  .twin .s{font-size:12px;color:var(--dark-muted)}
+  .green b{color:#5EE9A0} .coral b{color:#FF8B8B}
+
+  .results h3{font-size:17px;margin:24px 0 12px;font-weight:700}
+  .driver{display:grid;grid-template-columns:26px minmax(90px,1fr) 1.1fr 54px;gap:11px;align-items:center;
+    font-size:14px;padding:5px 0}
+  .driver .nm{color:#E2E8F0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .track{display:block;height:9px;background:rgba(255,255,255,.09);border-radius:5px;overflow:hidden}
+  .fill{display:block;height:100%;border-radius:5px}
+  .pts{text-align:right;font-variant-numeric:tabular-nums;font-weight:600}
+  .insight{display:flex;gap:11px;background:var(--dark-inner);border:1px solid var(--dark-line);
+    border-radius:12px;padding:14px 16px;margin-top:18px;font-size:14px;color:#E2E8F0}
+
+  .bottom{display:grid;grid-template-columns:1fr 1fr;gap:22px;margin-top:22px}
+  .bcard{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:22px;
+    box-shadow:0 1px 3px rgba(11,18,32,.06),0 8px 24px -16px rgba(11,18,32,.18);
+    display:grid;grid-template-columns:52px 1fr auto;gap:16px;align-items:center}
+  .bcard .ico{width:52px;height:52px;border-radius:12px;display:grid;place-items:center;font-size:23px}
+  .bcard h3{margin:0;font-size:17px;font-weight:700}
+  .bcard p{margin:2px 0 0;color:var(--muted);font-size:13.5px}
+  .out{text-align:right}
+  .out b{display:block;font-size:24px;font-variant-numeric:tabular-nums;letter-spacing:-.02em}
+  .out span{font-size:12.5px;color:var(--muted)}
+  select{font:inherit;font-size:14.5px;padding:10px 12px;border:1px solid var(--line);border-radius:9px;
+    background:var(--card);color:var(--text);width:100%;margin-top:8px}
+  input:focus-visible,select:focus-visible,button:focus-visible,a:focus-visible{outline:2px solid var(--green);outline-offset:2px}
+
+  footer{border-top:1px solid var(--line);margin-top:34px;padding-block:22px 0;color:var(--muted);font-size:13px}
+  footer strong{color:var(--text)}
+
+  @media (max-width:980px){
+    .herogrid{grid-template-columns:1fr;gap:26px;align-items:start}
+    .cols,.bottom{grid-template-columns:1fr}
+    .hero{background-position:58% 58%}
+    .script{display:none}
+  }
+  @media (max-width:620px){
+    .navlinks a{display:none}
+    .card,.results,.natcard{padding:18px}
+    .twin{grid-template-columns:1fr}
+    .row{grid-template-columns:32px minmax(0,1fr) 84px 50px;gap:8px}
+    .row input{width:100%;padding-inline:8px;font-size:15px}
+    .row label{font-size:14px}
+    .rate{font-size:12px;padding:3px 7px}
+    .tile{width:32px;height:32px;font-size:15px}
+    .bcard{grid-template-columns:44px 1fr;text-align:left}
+    .out{text-align:left;grid-column:1/-1}
+  }
+  @media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+<header class="hero">
+  <div class="inner">
+    <div class="script" aria-hidden="true">
+      <i>Same</i><i>Jamaica.</i><i>Different</i><i>Realities.</i>
+      <svg viewBox="0 0 150 12" fill="none"><path d="M3 8C34 3 96 2 147 6" stroke="#FFCC29" stroke-width="3.2" stroke-linecap="round"/></svg>
+    </div>
+    <nav>
+      <span class="brand">🇯🇲 My Inflation Rate</span>
+      <span class="navlinks">
+        <a href="#how">About</a>
+        <a href="#how">The Data</a>
+        <span class="pill-jmd">JMD</span>
+      </span>
+    </nav>
+
+    <div class="herogrid">
+      <div>
+        <h1>Because the average isn't <em>your reality.</em></h1>
+        <p class="lede">Jamaica's inflation was 7.9% in August 2026. But your spending is unique. Enter your monthly expenses to see your own inflation rate, how much more you're paying, and what's driving it.</p>
+        <div class="badges">
+          <span class="badge"><span class="ico g">🔒</span><span><b>Private</b><span>Stays on your device</span></span></span>
+          <span class="badge"><span class="ico y">⚡</span><span><b>Quick</b><span>Just nine numbers</span></span></span>
+          <span class="badge"><span class="ico b">📊</span><span><b>Real data</b><span>From STATIN</span></span></span>
+        </div>
+      </div>
+
+      <div class="natcard">
+        <div class="top"><b>Jamaica inflation (national average)</b><span>August 2026</span></div>
+        <div class="natfig">
+          <span class="n">7.9%</span>
+          <span class="d">↑ +1.2%<small>vs June 2026 (6.7%)</small></span>
+        </div>
+        <div class="natmini">
+          <div><span style="font-size:17px">🍽️</span><span><b style="color:#5EE9A0">10.2%</b><span>Food</span></span></div>
+          <div><span style="font-size:17px">🚗</span><span><b style="color:#FF8B8B">14.6%</b><span>Transport</span></span></div>
+          <div><span style="font-size:17px">🏠</span><span><b style="color:#7DBCF5">4.8%</b><span>Housing</span></span></div>
+        </div>
+        <p class="natsrc">Source: STATIN Consumer Price Index, August 2026</p>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main class="inner">
+  <div class="cols">
+    <section class="card">
+      <div class="cardhead">
+        <div>
+          <h2>Your monthly spending</h2>
+          <p class="sub">Enter how much you spend in each category (JMD)</p>
+        </div>
+        <button class="reset" id="reset">↺ Reset</button>
+      </div>
+      <div id="inputs"></div>
+      <p class="foot"><span>ⓘ</span><span>The percentage on the right is the 12-month inflation rate for that category (August 2026, STATIN).</span></p>
+    </section>
+
+    <section class="results">
+      <div class="cardhead">
+        <div>
+          <h2>Your results</h2>
+          <p class="sub">Based on your spending and Jamaica's latest inflation rates</p>
+        </div>
+        <span class="tagpill">Your rate</span>
+      </div>
+
+      <div class="ratebox">
+        <div class="n" id="rate">—</div>
+        <div class="l" id="verdict">Your personal inflation rate</div>
+      </div>
+
+      <div class="twin">
+        <div class="green">
+          <span class="ico" style="background:rgba(34,197,94,.16)">📈</span>
+          <span><b id="permonth">—</b><span class="k">Extra per month</span><br><span class="s">Compared to last year</span></span>
+        </div>
+        <div class="coral">
+          <span class="ico" style="background:rgba(255,98,98,.16)">🗓️</span>
+          <span><b id="peryear">—</b><span class="k">Extra per year</span><br><span class="s">Compared to last year</span></span>
+        </div>
+      </div>
+
+      <h3>What's driving your inflation?</h3>
+      <div id="drivers"></div>
+      <div class="insight"><span>💡</span><span id="insight"></span></div>
+    </section>
+  </div>
+
+  <div class="bottom">
+    <section class="bcard">
+      <span class="ico" style="background:rgba(255,204,41,.18)">🪙</span>
+      <div>
+        <h3>What salary do you need next year?</h3>
+        <p>To maintain your current standard of living.</p>
+      </div>
+      <div class="out"><b id="needed">—</b><span id="neededNote"></span></div>
+    </section>
+
+    <section class="bcard">
+      <span class="ico" style="background:rgba(66,149,232,.16)">🎯</span>
+      <div>
+        <h3>Adjust the target</h3>
+        <p>If you want to get ahead, not just keep pace.</p>
+        <label for="target" style="position:absolute;left:-9999px">Target</label>
+        <select id="target">
+          <option value="0">Keep the same standard of living</option>
+          <option value="3">Get ahead by 3% in real terms</option>
+          <option value="5">Get ahead by 5% in real terms</option>
+        </select>
+      </div>
+      <div class="out"><b id="needed2">—</b><span>Monthly salary needed</span></div>
+    </section>
+  </div>
+
+  <footer id="how">
+    <strong>How it works.</strong> Each category you enter is multiplied by its own 12-month (point-to-point) inflation rate for August 2026, published by STATIN, and the results are added together. Your rate is the increase on your basket as a whole, which answers a narrower question than the national figure: how much more the things you buy cost than a year ago. Nothing you type leaves your device.
+  </footer>
+</main>
+
+<script>
+const CATS = [
+  { k:"food",      name:"Food & non-alcoholic beverages", short:"Food",          icon:"🍽️", tint:"rgba(34,197,94,.14)",  bar:"#22C55E", rate:10.2, start:35000 },
+  { k:"transport", name:"Transport",                      short:"Transport",     icon:"🚗", tint:"rgba(255,98,98,.14)",  bar:"#FF6262", rate:14.6, start:10000 },
+  { k:"housing",   name:"Housing, water, electricity, gas",short:"Housing",      icon:"🏠", tint:"rgba(66,149,232,.14)", bar:"#4295E8", rate: 4.8, start:60000 },
+  { k:"home",      name:"Furnishings & household items",   short:"Household",    icon:"🛒", tint:"rgba(245,158,11,.14)", bar:"#F59E0B", rate: 3.4, start:15000 },
+  { k:"health",    name:"Health",                          short:"Health",       icon:"❤️", tint:"rgba(255,98,98,.12)",  bar:"#FF8B8B", rate: 3.9, start: 8000 },
+  { k:"fun",       name:"Recreation, sport & culture",     short:"Recreation",   icon:"🍿", tint:"rgba(245,158,11,.12)", bar:"#FFCC29", rate: 3.2, start:10000 },
+  { k:"clothes",   name:"Clothing & footwear",             short:"Clothing",     icon:"👕", tint:"rgba(66,149,232,.12)", bar:"#7DBCF5", rate: 2.9, start: 6000 },
+  { k:"bar",       name:"Alcohol & tobacco",               short:"Alcohol",      icon:"🍺", tint:"rgba(255,204,41,.16)", bar:"#E0B33C", rate: 6.7, start: 4000 },
+  { k:"other",     name:"Other goods & services",          short:"Other",        icon:"•••", tint:"rgba(90,101,114,.12)", bar:"#94A3B8", rate: 4.5, start:12000 }
+];
+const HEADLINE = 7.9;
+const $ = id => document.getElementById(id);
+const jd = n => "J$" + Math.round(n).toLocaleString("en-JM");
+
+$("inputs").innerHTML = CATS.map(c => {
+  const cls = c.rate >= 8 ? "high" : c.rate <= 5 ? "low" : "mid";
+  return `<div class="row">
+    <span class="tile" style="background:${c.tint}">${c.icon}</span>
+    <label for="${c.k}">${c.name}</label>
+    <input id="${c.k}" type="number" min="0" step="500" inputmode="numeric" value="${c.start}">
+    <span class="rate ${cls}">${c.rate.toFixed(1)}%</span>
+  </div>`;
+}).join("");
+
+function calc(){
+  let now = 0, then = 0;
+  const parts = CATS.map(c => {
+    const spend = Math.max(0, parseFloat($(c.k).value) || 0);
+    const was = spend / (1 + c.rate / 100);
+    now += spend; then += was;
+    return { ...c, spend, rise: spend - was };
+  });
+
+  if (then === 0){
+    $("rate").textContent = "—";
+    $("verdict").textContent = "Enter what you spend to see your rate";
+    ["permonth","peryear","needed","needed2"].forEach(id => $(id).textContent = "—");
+    $("drivers").innerHTML = ""; $("insight").textContent = ""; $("neededNote").textContent = "";
+    return;
+  }
+
+  const mine = (now / then - 1) * 100;
+  const gap = mine - HEADLINE;
+  $("rate").textContent = mine.toFixed(1) + "%";
+  $("rate").style.color = gap > 0.05 ? "#FF8B8B" : "#5EE9A0";
+  $("verdict").textContent = Math.abs(gap) < 0.05
+    ? "Your personal inflation rate — the same as the national 7.9%"
+    : gap > 0
+      ? `Your personal inflation rate — ${gap.toFixed(1)} points above the national 7.9%`
+      : `Your personal inflation rate — ${Math.abs(gap).toFixed(1)} points below the national 7.9%`;
+
+  $("permonth").textContent = jd(now - then);
+  $("peryear").textContent  = jd((now - then) * 12);
+
+  const ranked = parts.map(p => ({ ...p, pts: p.rise / then * 100 }))
+    .filter(p => p.spend > 0).sort((a, b) => b.pts - a.pts);
+  const top = ranked.slice(0, 4);
+  const restPts = ranked.slice(4).reduce((t, p) => t + p.pts, 0);
+  const shown = restPts > 0.05
+    ? [...top, { short: "Everything else", icon: "➕", bar: "#5A6572", pts: restPts }]
+    : top;
+  const max = Math.max(...shown.map(s => s.pts), 0.01);
+
+  $("drivers").innerHTML = shown.map(s => `
+    <div class="driver">
+      <span>${s.icon}</span>
+      <span class="nm">${s.short}</span>
+      <span class="track"><span class="fill" style="width:${Math.max(4, s.pts / max * 100)}%;background:${s.bar}"></span></span>
+      <span class="pts">${s.pts.toFixed(1)}%</span>
+    </div>`).join("");
+
+  if (ranked.length > 1){
+    const two = ranked.slice(0, 2), share = two[0].pts + two[1].pts;
+    $("insight").textContent = `${two[0].short} and ${two[1].short.toLowerCase()} make up ${share.toFixed(1)} percentage points of your ${mine.toFixed(1)}% rate — ${Math.round(share / mine * 100)}% of the total.`;
+  } else {
+    $("insight").textContent = `${ranked[0].short} accounts for your whole increase.`;
+  }
+
+  const uplift = mine / 100 + parseFloat($("target").value) / 100;
+  const needed = now * (1 + uplift);
+  $("needed").textContent = jd(needed);
+  $("neededNote").textContent = `Recommended monthly income (+${(uplift * 100).toFixed(1)}%)`;
+  $("needed2").textContent = jd(needed);
+}
+
+CATS.forEach(c => $(c.k).addEventListener("input", calc));
+$("target").addEventListener("change", calc);
+$("reset").addEventListener("click", () => {
+  CATS.forEach(c => $(c.k).value = c.start);
+  $("target").value = "0";
+  calc();
+});
+calc();
+</script>
+
+</body>
+</html>
