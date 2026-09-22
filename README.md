@@ -26,6 +26,15 @@ Nothing is sent anywhere — the maths runs in the browser and no data leaves th
 figures, so the numbers can be checked or reused in a spreadsheet. If the browser blocks the
 download (some embedded viewers do) it falls back to copying the CSV to the clipboard.
 
+**What your salary is worth** takes your monthly pay and shows what it would have bought a
+year ago (`salary / (1 + your_rate)`), the purchasing power lost per month and per year, the
+raise needed to stand still, and the raise needed to gain real ground. With no salary entered
+it falls back to the basket total and says so. All of it uses *your* rate, not the national one.
+
+**Share image** draws a 1080x1080 PNG on a canvas — your rate, the gap to the national average
+and your top three drivers — for WhatsApp or Instagram. On phones it offers the native share
+sheet; elsewhere it downloads.
+
 Spend fields accept digits only — letters, signs, decimals and pasted junk are stripped on the
 way in, and values are capped at eight digits.
 

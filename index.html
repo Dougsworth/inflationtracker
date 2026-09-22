@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="Jamaica's inflation rate is an average. Work out your own from what you actually spend, using STATIN's latest category rates.">
+<meta name="description" content="Jamaica's inflation rate is an average. Work out your own from what you actually spend, see what your salary is really worth, and share the result.">
 <meta name="theme-color" content="#0B1220">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 22'><rect width='32' height='22' rx='3' fill='%23009B3A'/><path d='M0 0 11.6 11 0 22z' fill='%23111'/><path d='M32 0 20.4 11 32 22z' fill='%23111'/><path d='M0 0 32 22M32 0 0 22' stroke='%23FFCC29' stroke-width='4.6' fill='none'/></svg>">
 <meta property="og:title" content="My Inflation Rate — Jamaica">
@@ -54,9 +54,8 @@
   /* ---------- motion ---------- */
   @keyframes rise{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
   @keyframes pop{0%{transform:scale(1)}40%{transform:scale(1.045)}100%{transform:scale(1)}}
-  .card,.results,.bcard{animation:rise .55s cubic-bezier(.22,.7,.3,1) both}
-  .results{animation-delay:.07s} .bottom .bcard:first-child{animation-delay:.14s}
-  .bottom .bcard:last-child{animation-delay:.2s}
+  .card,.results{animation:rise .55s cubic-bezier(.22,.7,.3,1) both}
+  .results{animation-delay:.07s}
   .fill{transition:width .45s cubic-bezier(.22,.7,.3,1),background-color .3s}
   .driver{animation:rise .35s cubic-bezier(.22,.7,.3,1) both}
   .ratebox .n.bump{animation:pop .42s cubic-bezier(.3,1.4,.5,1)}
@@ -76,6 +75,47 @@
   @media (prefers-reduced-motion:reduce){
     *{animation:none!important}
   }
+
+  /* ---------- salary ---------- */
+  .salary{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:24px;margin-top:22px;
+    box-shadow:0 1px 3px rgba(11,18,32,.06),0 8px 24px -16px rgba(11,18,32,.18);
+    animation:rise .55s cubic-bezier(.22,.7,.3,1) both;animation-delay:.14s}
+  .shead{display:grid;grid-template-columns:52px 1fr;gap:16px;align-items:start}
+  .shead .ico{width:52px;height:52px;border-radius:12px;display:grid;place-items:center}
+  .shead h3{margin:0;font-size:19px;font-weight:700;letter-spacing:-.01em}
+  .shead p{margin:3px 0 0;color:var(--muted);font-size:14px;max-width:62ch}
+  .sgrid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:20px}
+  .sfield{min-width:0}
+  .sfield label{display:block;font-size:13.5px;font-weight:600;color:var(--muted);margin-bottom:6px}
+  .sfield input,.sfield select{width:100%;height:46px;font:inherit;font-size:16px;padding:0 13px;
+    border:1px solid var(--line);border-radius:9px;background:var(--card);color:var(--text);
+    font-variant-numeric:tabular-nums;transition:border-color .16s,box-shadow .16s}
+  .sfield input:focus,.sfield select:focus{outline:none;border-color:var(--green);box-shadow:0 0 0 3px rgba(34,197,94,.16)}
+  .stiles{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:20px}
+  .stiles>div{background:#F7F9FC;border:1px solid var(--line);border-radius:12px;padding:15px;min-width:0}
+  .stiles b{display:block;font-size:22px;font-weight:750;letter-spacing:-.015em;
+    font-variant-numeric:tabular-nums;overflow-wrap:anywhere;line-height:1.2}
+  .stiles span{display:block;font-size:13.5px;font-weight:600;margin-top:3px}
+  .stiles small{display:block;font-size:12px;color:var(--muted);margin-top:3px}
+  .stiles .neg b{color:#D2453B} .stiles .pos b{color:#15803D}
+  .sfoot{margin:16px 0 0;font-size:13px;color:var(--muted)}
+
+  /* ---------- share modal ---------- */
+  .modal{position:fixed;inset:0;z-index:50;background:rgba(11,18,32,.72);
+    display:grid;place-items:center;padding:20px;overflow:auto}
+  .modal[hidden]{display:none}
+  .sheet{background:var(--card);border-radius:16px;padding:18px;max-width:440px;width:100%;
+    box-shadow:0 24px 60px -12px rgba(11,18,32,.5);animation:rise .3s cubic-bezier(.22,.7,.3,1) both}
+  .sheethead{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:12px}
+  .sheethead b{font-size:16px}
+  .x{border:none;background:none;font-size:26px;line-height:1;color:var(--muted);cursor:pointer;padding:0 4px}
+  .x:hover{color:var(--text)}
+  .sheet img{display:block;width:100%;border-radius:12px;border:1px solid var(--line)}
+  .hint{margin:11px 0 0;font-size:12.5px;color:var(--muted)}
+  .sheetfoot{display:flex;justify-content:flex-end;margin-top:14px}
+  .sheetfoot .export{color:var(--text);background:#F1F5F9;border-color:var(--line)}
+  .sheetfoot .export:hover{background:#E6ECF3;color:var(--text);border-color:#CBD5E1}
+  .actions{gap:10px}
 
   /* ---------- hero ---------- */
   .hero{
@@ -232,8 +272,9 @@
     .row label{font-size:14px}
     .rate{font-size:12px;padding:3px 7px}
     .tile{width:32px;height:32px;font-size:15px}
-    .bcard{grid-template-columns:44px 1fr;text-align:left}
-    .out{text-align:left;grid-column:1/-1}
+    .salary,.sheet{padding:18px}
+    .sgrid,.stiles{grid-template-columns:1fr}
+    .actions{flex-wrap:wrap}
   }
   @media (prefers-reduced-motion:reduce){*{transition:none!important}}
 </style>
@@ -327,41 +368,64 @@
       <div id="drivers"></div>
       <div class="insight"><span class="bulb" data-icon="bulb"></span><span id="insight"></span></div>
       <div class="actions">
+        <button class="export" id="share" type="button"><span data-icon="share"></span><span id="shareLabel">Share image</span></button>
         <button class="export" id="export" type="button"><span data-icon="dl"></span><span id="exportLabel">Export CSV</span></button>
       </div>
     </section>
   </div>
 
-  <div class="bottom">
-    <section class="bcard">
+  <section class="salary">
+    <div class="shead">
       <span class="ico" style="background:rgba(255,204,41,.18);color:#C9931F" data-icon="coins"></span>
       <div>
-        <h3>What salary do you need next year?</h3>
-        <p>To maintain your current standard of living.</p>
+        <h3>What is your salary actually worth?</h3>
+        <p>The same pay buys less than it did a year ago. Enter it to see how much you have lost, and what to ask for.</p>
       </div>
-      <div class="out"><b id="needed">—</b><span id="neededNote"></span></div>
-    </section>
+    </div>
 
-    <section class="bcard">
-      <span class="ico" style="background:rgba(66,149,232,.16);color:#2F7FD4" data-icon="target"></span>
-      <div>
-        <h3>Adjust the target</h3>
-        <p>If you want to get ahead, not just keep pace.</p>
-        <label for="target" style="position:absolute;left:-9999px">Target</label>
+    <div class="sgrid">
+      <div class="sfield">
+        <label for="salary">Your current monthly salary (JMD)</label>
+        <input id="salary" type="text" inputmode="numeric" autocomplete="off" spellcheck="false"
+               maxlength="11" placeholder="e.g. 250,000">
+      </div>
+      <div class="sfield">
+        <label for="target">What you want from the next raise</label>
         <select id="target">
-          <option value="0">Keep the same standard of living</option>
+          <option value="0">Just keep the same standard of living</option>
           <option value="3">Get ahead by 3% in real terms</option>
           <option value="5">Get ahead by 5% in real terms</option>
         </select>
       </div>
-      <div class="out"><b id="needed2">—</b><span>Monthly salary needed</span></div>
-    </section>
-  </div>
+    </div>
+
+    <div class="stiles">
+      <div><b id="sWorth">—</b><span>Worth in last-year money</span><small id="sWorthNote">What your pay would have bought</small></div>
+      <div class="neg"><b id="sLost">—</b><span>Lost per month</span><small id="sLostYr"></small></div>
+      <div class="pos"><b id="sStand">—</b><span>To stand still</span><small id="sStandNote"></small></div>
+      <div class="pos"><b id="sAhead">—</b><span>To get ahead</span><small id="sAheadNote"></small></div>
+    </div>
+    <p class="sfoot" id="sFoot"></p>
+  </section>
 
   <footer id="how">
     <strong>How it works.</strong> Each category you enter is multiplied by its own 12-month (point-to-point) inflation rate for August 2026, published by STATIN, and the results are added together. Your rate is the increase on your basket as a whole, which answers a narrower question than the national figure: how much more the things you buy cost than a year ago. Nothing you type leaves your device.
   </footer>
 </main>
+
+<div class="modal" id="modal" hidden>
+  <div class="sheet" role="dialog" aria-modal="true" aria-label="Your shareable image">
+    <div class="sheethead">
+      <b>Your result, ready to share</b>
+      <button class="x" id="modalClose" type="button" aria-label="Close">&times;</button>
+    </div>
+    <img id="shareImg" alt="A card showing your personal inflation rate">
+    <p class="hint">On a phone, press and hold the image to save it. On a computer, use the button below or right-click the image.</p>
+    <div class="sheetfoot">
+      <button class="export" id="shareDl" type="button"><span data-icon="dl"></span>Download PNG</button>
+    </div>
+  </div>
+</div>
 
 <script>
 const ICONS = {
@@ -387,6 +451,7 @@ const ICONS = {
   undo:  ['0 0 24 24','<path d="M4.5 3.9a1.05 1.05 0 0 1 1.05 1.05v2.2A8.6 8.6 0 1 1 3.45 13a1.05 1.05 0 1 1 2.09.22A6.5 6.5 0 1 0 7.3 8.35H9.4a1.05 1.05 0 0 1 0 2.1H4.5A1.05 1.05 0 0 1 3.45 9.4V4.95A1.05 1.05 0 0 1 4.5 3.9z"/>'],
   info:  ['0 0 24 24','<path d="M12 2.6a9.4 9.4 0 1 0 0 18.8 9.4 9.4 0 0 0 0-18.8zm0 3.4a1.35 1.35 0 1 1 0 2.7 1.35 1.35 0 0 1 0-2.7zm0 4.3a1.1 1.1 0 0 1 1.1 1.1v5.3a1.1 1.1 0 0 1-2.2 0v-5.3A1.1 1.1 0 0 1 12 10.3z"/>'],
   up:    ['0 0 24 24','<path d="M12 3.6a1.1 1.1 0 0 1 .82.37l5.6 6.3a1.1 1.1 0 0 1-1.64 1.46l-3.68-4.14V19.3a1.1 1.1 0 0 1-2.2 0V7.59l-3.68 4.14a1.1 1.1 0 1 1-1.64-1.46l5.6-6.3A1.1 1.1 0 0 1 12 3.6z"/>'],
+  share: ['0 0 24 24','<path d="M17.5 2.2a3.8 3.8 0 0 0-3.72 4.56L9.4 9.26a3.8 3.8 0 1 0 0 5.48l4.38 2.5a3.8 3.8 0 1 0 1.04-1.82l-4.38-2.5a3.83 3.83 0 0 0 0-1.84l4.38-2.5A3.8 3.8 0 1 0 17.5 2.2z"/>'],
   dl:    ['0 0 24 24','<path d="M12 2.6a1.15 1.15 0 0 1 1.15 1.15v9.06l2.79-2.79a1.15 1.15 0 0 1 1.62 1.62l-4.75 4.75a1.15 1.15 0 0 1-1.62 0L6.44 11.64a1.15 1.15 0 0 1 1.62-1.62l2.79 2.79V3.75A1.15 1.15 0 0 1 12 2.6z"/><path d="M4 15.1a1.15 1.15 0 0 1 1.15 1.15v2.1a.5.5 0 0 0 .5.5h12.7a.5.5 0 0 0 .5-.5v-2.1a1.15 1.15 0 0 1 2.3 0v2.1a2.8 2.8 0 0 1-2.8 2.8H5.65a2.8 2.8 0 0 1-2.8-2.8v-2.1A1.15 1.15 0 0 1 4 15.1z"/>'],
   flag:  ['0 0 32 22','<defs><clipPath id="jaflag"><rect width="32" height="22" rx="3.2"/></clipPath></defs><g clip-path="url(#jaflag)"><rect width="32" height="22" fill="#009B3A"/><path d="M0 0 11.6 11 0 22z" fill="#111"/><path d="M32 0 20.4 11 32 22z" fill="#111"/><path d="M0 0 32 22M32 0 0 22" stroke="#FFCC29" stroke-width="4.6" fill="none"/></g>']
 };
@@ -541,17 +606,33 @@ function calc(opts = {}){
 
   const target = parseFloat($("target").value);
   const uplift = mine / 100 + target / 100;
-  const needed = now * (1 + uplift);
-  if (grow){
-    countTo($("needed"), needed, jd);
-    countTo($("needed2"), needed, jd);
-  } else {
-    $("needed").textContent = jd(needed);
-    $("needed2").textContent = jd(needed);
-  }
-  $("neededNote").textContent = `Recommended monthly income (+${(uplift * 100).toFixed(1)}%)`;
 
-  LAST = { parts, ranked, now, then, mine, target, uplift, needed };
+  // salary is optional: with no figure we fall back to the basket total, and say so
+  const salary   = readSpend($("salary"));
+  const usingPay = salary > 0;
+  const base     = usingPay ? salary : now;
+
+  const worth = base / (1 + mine / 100);   // what this pay would have bought a year ago
+  const lost  = base - worth;
+  const stand = base * (1 + mine / 100);
+  const ahead = base * (1 + uplift);
+
+  const set = (id, v) => { grow ? countTo($(id), v, jd) : ($(id).textContent = jd(v)); };
+  set("sWorth", worth); set("sLost", lost); set("sStand", stand); set("sAhead", ahead);
+
+  $("sWorthNote").textContent = `${mine.toFixed(1)}% less than it buys today`;
+  $("sLostYr").textContent    = `${jd(lost * 12)} over a year`;
+  $("sStandNote").textContent = `A raise of ${mine.toFixed(1)}%`;
+  $("sAheadNote").textContent = target > 0
+    ? `${target}% real growth — a raise of ${(uplift * 100).toFixed(1)}%`
+    : "Pick a target above to see this";
+  $("sAhead").style.opacity = target > 0 ? "" : ".45";
+
+  $("sFoot").textContent = usingPay
+    ? `Based on a salary of ${jd(salary)} a month and your own ${mine.toFixed(1)}% inflation rate, not the national 7.9%.`
+    : `No salary entered, so these use your basket total of ${jd(now)} a month. Put your actual salary in for a figure you can take into a raise conversation.`;
+
+  LAST = { parts, ranked, now, then, mine, target, uplift, salary, usingPay, base, worth, lost, stand, ahead };
 }
 
 CATS.forEach(c => {
@@ -563,12 +644,132 @@ CATS.forEach(c => {
     if (e.key.length === 1 && !e.ctrlKey && !e.metaKey && !/\d/.test(e.key)) e.preventDefault();
   });
 });
+const salEl = $("salary");
+salEl.addEventListener("input", () => { sanitise(salEl); calc(); });
+salEl.addEventListener("keydown", e => {
+  if (e.key.length === 1 && !e.ctrlKey && !e.metaKey && !/\d/.test(e.key)) e.preventDefault();
+});
 $("target").addEventListener("change", () => calc());
 $("reset").addEventListener("click", () => {
   CATS.forEach(c => $(c.k).value = grp(c.start));
   $("target").value = "0";
+  $("salary").value = "";
   driversKey = "";
-  calc({ grow: true });
+  
+/* ---------- shareable image ---------- */
+function drawCard(){
+  const L = LAST; if (!L) return null;
+  const S = 1080, c = document.createElement("canvas");
+  c.width = S; c.height = S;
+  const x = c.getContext("2d");
+  const F = (w, s) => `${w} ${s}px system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif`;
+
+  const bg = x.createLinearGradient(0, 0, S * .7, S);
+  bg.addColorStop(0, "#0F1B30"); bg.addColorStop(.55, "#0B1220"); bg.addColorStop(1, "#111C2F");
+  x.fillStyle = bg; x.fillRect(0, 0, S, S);
+  x.fillStyle = "#FFCC29"; x.fillRect(0, 0, S, 10);
+
+  // flag mark
+  const fx = 72, fy = 74, fw = 62, fh = 43;
+  x.save(); x.beginPath(); x.roundRect(fx, fy, fw, fh, 7); x.clip();
+  x.fillStyle = "#009B3A"; x.fillRect(fx, fy, fw, fh);
+  x.fillStyle = "#111";
+  x.beginPath(); x.moveTo(fx, fy); x.lineTo(fx + fw * .36, fy + fh / 2); x.lineTo(fx, fy + fh); x.fill();
+  x.beginPath(); x.moveTo(fx + fw, fy); x.lineTo(fx + fw * .64, fy + fh / 2); x.lineTo(fx + fw, fy + fh); x.fill();
+  x.strokeStyle = "#FFCC29"; x.lineWidth = 9;
+  x.beginPath(); x.moveTo(fx, fy); x.lineTo(fx + fw, fy + fh); x.moveTo(fx + fw, fy); x.lineTo(fx, fy + fh); x.stroke();
+  x.restore();
+
+  x.fillStyle = "#fff"; x.font = F(700, 38); x.textBaseline = "middle";
+  x.fillText("My Inflation Rate", fx + fw + 20, fy + fh / 2 + 1);
+
+  const above = L.mine > HEADLINE + .05;
+  x.textAlign = "center"; x.textBaseline = "alphabetic";
+  x.fillStyle = "#94A3B8"; x.font = F(600, 27);
+  x.fillText("MY PERSONAL INFLATION RATE".split("").join("\u2009"), S / 2, 265);
+
+  x.fillStyle = above ? "#FF8B8B" : "#5EE9A0"; x.font = F(800, 210);
+  x.fillText(L.mine.toFixed(1) + "%", S / 2, 445);
+
+  x.fillStyle = "#CBD5E1"; x.font = F(500, 33);
+  const diff = Math.abs(L.mine - HEADLINE).toFixed(1);
+  x.fillText(Math.abs(L.mine - HEADLINE) < .05
+    ? `Same as Jamaica's national average of ${HEADLINE}%`
+    : `${diff} points ${above ? "above" : "below"} Jamaica's ${HEADLINE}% average`, S / 2, 505);
+
+  x.strokeStyle = "rgba(255,255,255,.12)"; x.lineWidth = 2;
+  x.beginPath(); x.moveTo(90, 566); x.lineTo(S - 90, 566); x.stroke();
+
+  x.textAlign = "left"; x.fillStyle = "#fff"; x.font = F(700, 30);
+  x.fillText("What's driving it", 90, 625);
+
+  const rows = L.ranked.slice(0, 3);
+  const mx = Math.max(...rows.map(r => r.pts), .01);
+  rows.forEach((r, i) => {
+    const y = 690 + i * 78;
+    x.fillStyle = "#E2E8F0"; x.font = F(500, 28);
+    x.fillText(r.short, 90, y + 9);
+    const bx = 420, bw = 440;
+    x.fillStyle = "rgba(255,255,255,.10)";
+    x.beginPath(); x.roundRect(bx, y - 9, bw, 18, 9); x.fill();
+    x.fillStyle = r.bar;
+    x.beginPath(); x.roundRect(bx, y - 9, Math.max(22, bw * r.pts / mx), 18, 9); x.fill();
+    x.textAlign = "right"; x.fillStyle = "#fff"; x.font = F(700, 27);
+    x.fillText(r.pts.toFixed(1) + "%", S - 90, y + 9);
+    x.textAlign = "left";
+  });
+
+  x.textAlign = "center"; x.fillStyle = "#FFCC29"; x.font = F(700, 27);
+  x.fillText("Same Jamaica. Different realities.", S / 2, 945);
+  x.fillStyle = "#7C8BA1"; x.font = F(500, 24);
+  const host = (location.host || "").replace(/^www\./, "");
+  x.fillText(host ? `Work out yours at ${host}` : "Work out your own rate", S / 2, 990);
+  return c;
+}
+
+const modal = $("modal");
+let shareBlobUrl = null;
+
+function closeModal(){
+  modal.hidden = true;
+  if (shareBlobUrl){ URL.revokeObjectURL(shareBlobUrl); shareBlobUrl = null; }
+}
+$("modalClose").addEventListener("click", closeModal);
+modal.addEventListener("click", e => { if (e.target === modal) closeModal(); });
+addEventListener("keydown", e => { if (e.key === "Escape" && !modal.hidden) closeModal(); });
+
+$("share").addEventListener("click", () => {
+  const c = drawCard(); if (!c) return;
+  const png = c.toDataURL("image/png");
+  $("shareImg").src = png;
+  modal.hidden = false;
+  c.toBlob(b => {
+    if (!b) return;
+    if (shareBlobUrl) URL.revokeObjectURL(shareBlobUrl);
+    shareBlobUrl = URL.createObjectURL(b);
+  }, "image/png");
+});
+
+$("shareDl").addEventListener("click", async () => {
+  const c = drawCard(); if (!c) return;
+  const name = `my-inflation-rate-${new Date().toISOString().slice(0, 10)}.png`;
+  const blob = await new Promise(r => c.toBlob(r, "image/png"));
+  // native share sheet first on phones, then a normal download
+  try {
+    const file = new File([blob], name, { type: "image/png" });
+    if (navigator.canShare && navigator.canShare({ files: [file] })){
+      await navigator.share({ files: [file], title: "My inflation rate" });
+      return;
+    }
+  } catch(e){}
+  try {
+    const url = shareBlobUrl || URL.createObjectURL(blob);
+    const a = Object.assign(document.createElement("a"), { href: url, download: name });
+    document.body.appendChild(a); a.click(); a.remove();
+  } catch(e){}
+});
+
+calc({ grow: true });
 });
 
 /* ---------- CSV export ---------- */
@@ -595,8 +796,13 @@ function buildCsv(){
     ["Extra per month (J$)", r2(L.now - L.then)],
     ["Extra per year (J$)", r2((L.now - L.then) * 12)],
     [],
+    [L.usingPay ? "Current monthly salary (J$)" : "Monthly basket used in place of a salary (J$)", r2(L.base)],
+    ["Worth in last-year money (J$)", r2(L.worth)],
+    ["Purchasing power lost per month (J$)", r2(L.lost)],
+    ["Purchasing power lost per year (J$)", r2(L.lost * 12)],
+    ["Raise needed to stand still (J$)", r2(L.stand)],
     ["Target real growth (%)", L.target.toFixed(1)],
-    ["Monthly income needed (J$)", r2(L.needed)],
+    ["Raise needed to get ahead (J$)", r2(L.ahead)],
     [],
     ["Category", "Monthly spend (J$)", "Category inflation (%)",
      "Same spend a year ago (J$)", "Increase (J$)", "Contribution (percentage points)"]
@@ -632,6 +838,120 @@ $("export").addEventListener("click", async () => {
     try { await navigator.clipboard.writeText(csv); flashExport("Copied to clipboard"); }
     catch (e2) { flashExport("Couldn't export"); }
   }
+});
+
+
+/* ---------- shareable image ---------- */
+function drawCard(){
+  const L = LAST; if (!L) return null;
+  const S = 1080, c = document.createElement("canvas");
+  c.width = S; c.height = S;
+  const x = c.getContext("2d");
+  const F = (w, s) => `${w} ${s}px system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif`;
+
+  const bg = x.createLinearGradient(0, 0, S * .7, S);
+  bg.addColorStop(0, "#0F1B30"); bg.addColorStop(.55, "#0B1220"); bg.addColorStop(1, "#111C2F");
+  x.fillStyle = bg; x.fillRect(0, 0, S, S);
+  x.fillStyle = "#FFCC29"; x.fillRect(0, 0, S, 10);
+
+  // flag mark
+  const fx = 72, fy = 74, fw = 62, fh = 43;
+  x.save(); x.beginPath(); x.roundRect(fx, fy, fw, fh, 7); x.clip();
+  x.fillStyle = "#009B3A"; x.fillRect(fx, fy, fw, fh);
+  x.fillStyle = "#111";
+  x.beginPath(); x.moveTo(fx, fy); x.lineTo(fx + fw * .36, fy + fh / 2); x.lineTo(fx, fy + fh); x.fill();
+  x.beginPath(); x.moveTo(fx + fw, fy); x.lineTo(fx + fw * .64, fy + fh / 2); x.lineTo(fx + fw, fy + fh); x.fill();
+  x.strokeStyle = "#FFCC29"; x.lineWidth = 9;
+  x.beginPath(); x.moveTo(fx, fy); x.lineTo(fx + fw, fy + fh); x.moveTo(fx + fw, fy); x.lineTo(fx, fy + fh); x.stroke();
+  x.restore();
+
+  x.fillStyle = "#fff"; x.font = F(700, 38); x.textBaseline = "middle";
+  x.fillText("My Inflation Rate", fx + fw + 20, fy + fh / 2 + 1);
+
+  const above = L.mine > HEADLINE + .05;
+  x.textAlign = "center"; x.textBaseline = "alphabetic";
+  x.fillStyle = "#94A3B8"; x.font = F(600, 27);
+  x.fillText("MY PERSONAL INFLATION RATE".split("").join("\u2009"), S / 2, 265);
+
+  x.fillStyle = above ? "#FF8B8B" : "#5EE9A0"; x.font = F(800, 210);
+  x.fillText(L.mine.toFixed(1) + "%", S / 2, 445);
+
+  x.fillStyle = "#CBD5E1"; x.font = F(500, 33);
+  const diff = Math.abs(L.mine - HEADLINE).toFixed(1);
+  x.fillText(Math.abs(L.mine - HEADLINE) < .05
+    ? `Same as Jamaica's national average of ${HEADLINE}%`
+    : `${diff} points ${above ? "above" : "below"} Jamaica's ${HEADLINE}% average`, S / 2, 505);
+
+  x.strokeStyle = "rgba(255,255,255,.12)"; x.lineWidth = 2;
+  x.beginPath(); x.moveTo(90, 566); x.lineTo(S - 90, 566); x.stroke();
+
+  x.textAlign = "left"; x.fillStyle = "#fff"; x.font = F(700, 30);
+  x.fillText("What's driving it", 90, 625);
+
+  const rows = L.ranked.slice(0, 3);
+  const mx = Math.max(...rows.map(r => r.pts), .01);
+  rows.forEach((r, i) => {
+    const y = 690 + i * 78;
+    x.fillStyle = "#E2E8F0"; x.font = F(500, 28);
+    x.fillText(r.short, 90, y + 9);
+    const bx = 420, bw = 440;
+    x.fillStyle = "rgba(255,255,255,.10)";
+    x.beginPath(); x.roundRect(bx, y - 9, bw, 18, 9); x.fill();
+    x.fillStyle = r.bar;
+    x.beginPath(); x.roundRect(bx, y - 9, Math.max(22, bw * r.pts / mx), 18, 9); x.fill();
+    x.textAlign = "right"; x.fillStyle = "#fff"; x.font = F(700, 27);
+    x.fillText(r.pts.toFixed(1) + "%", S - 90, y + 9);
+    x.textAlign = "left";
+  });
+
+  x.textAlign = "center"; x.fillStyle = "#FFCC29"; x.font = F(700, 27);
+  x.fillText("Same Jamaica. Different realities.", S / 2, 945);
+  x.fillStyle = "#7C8BA1"; x.font = F(500, 24);
+  const host = (location.host || "").replace(/^www\./, "");
+  x.fillText(host ? `Work out yours at ${host}` : "Work out your own rate", S / 2, 990);
+  return c;
+}
+
+const modal = $("modal");
+let shareBlobUrl = null;
+
+function closeModal(){
+  modal.hidden = true;
+  if (shareBlobUrl){ URL.revokeObjectURL(shareBlobUrl); shareBlobUrl = null; }
+}
+$("modalClose").addEventListener("click", closeModal);
+modal.addEventListener("click", e => { if (e.target === modal) closeModal(); });
+addEventListener("keydown", e => { if (e.key === "Escape" && !modal.hidden) closeModal(); });
+
+$("share").addEventListener("click", () => {
+  const c = drawCard(); if (!c) return;
+  const png = c.toDataURL("image/png");
+  $("shareImg").src = png;
+  modal.hidden = false;
+  c.toBlob(b => {
+    if (!b) return;
+    if (shareBlobUrl) URL.revokeObjectURL(shareBlobUrl);
+    shareBlobUrl = URL.createObjectURL(b);
+  }, "image/png");
+});
+
+$("shareDl").addEventListener("click", async () => {
+  const c = drawCard(); if (!c) return;
+  const name = `my-inflation-rate-${new Date().toISOString().slice(0, 10)}.png`;
+  const blob = await new Promise(r => c.toBlob(r, "image/png"));
+  // native share sheet first on phones, then a normal download
+  try {
+    const file = new File([blob], name, { type: "image/png" });
+    if (navigator.canShare && navigator.canShare({ files: [file] })){
+      await navigator.share({ files: [file], title: "My inflation rate" });
+      return;
+    }
+  } catch(e){}
+  try {
+    const url = shareBlobUrl || URL.createObjectURL(blob);
+    const a = Object.assign(document.createElement("a"), { href: url, download: name });
+    document.body.appendChild(a); a.click(); a.remove();
+  } catch(e){}
 });
 
 calc({ grow: true });
