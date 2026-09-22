@@ -56,3 +56,4 @@ npx vercel --prod   # production
 ```
 
 Or drag this folder onto https://vercel.com/new.
+# inflationtracker
