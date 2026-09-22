@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="Jamaica's inflation rate is an average. Work out your own from what you actually spend, using STATIN's latest category rates.">
 <meta name="theme-color" content="#0B1220">
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>%F0%9F%87%AF%F0%9F%87%B2</text></svg>">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 22'><rect width='32' height='22' rx='3' fill='%23009B3A'/><path d='M0 0 11.6 11 0 22z' fill='%23111'/><path d='M32 0 20.4 11 32 22z' fill='%23111'/><path d='M0 0 32 22M32 0 0 22' stroke='%23FFCC29' stroke-width='4.6' fill='none'/></svg>">
 <meta property="og:title" content="My Inflation Rate — Jamaica">
 <meta property="og:description" content="Because the average isn't your reality. Find your personal inflation rate in under a minute.">
 <meta property="og:type" content="website">
@@ -31,6 +31,25 @@
     font-size:16px;line-height:1.5;padding:0;
   }
   .inner{max-width:1180px;margin:0 auto;padding-inline:20px}
+
+  /* ---------- icons ---------- */
+  .gi{display:block;width:20px;height:20px;flex:0 0 auto}
+  .brand .flag .gi{width:27px;height:19px}
+  .badge .ico .gi{width:18px;height:18px}
+  .badge .ico.g{color:#22C55E} .badge .ico.y{color:#FFCC29} .badge .ico.b{color:#4295E8}
+  .natfig .d{display:flex;align-items:baseline;gap:5px;flex-wrap:wrap}
+  .natfig .d small{flex:1 0 100%;margin-top:2px}
+  .natfig .d .gi{width:13px;height:13px;align-self:center}
+  .natmini .nmi .gi{width:18px;height:18px}
+  .tile .gi{width:20px;height:20px}
+  .reset{display:inline-flex;align-items:center;gap:6px}
+  .reset .gi{width:15px;height:15px}
+  .foot .gi{width:15px;height:15px;margin-top:2px}
+  .twin .ico .gi{width:18px;height:18px}
+  .driver .dic .gi{width:18px;height:18px}
+  .insight .bulb{color:#FFCC29}
+  .insight .bulb .gi{width:18px;height:18px;margin-top:1px}
+  .bcard .ico .gi{width:20px;height:20px}
 
   /* ---------- hero ---------- */
   .hero{
@@ -109,7 +128,7 @@
   .row{display:grid;grid-template-columns:44px 1fr 132px 62px;gap:12px;align-items:center;
     padding:9px 0;border-bottom:1px solid var(--line)}
   .row:last-of-type{border-bottom:none}
-  .tile{width:38px;height:38px;border-radius:10px;display:grid;place-items:center;font-size:18px}
+  .tile{width:38px;height:38px;border-radius:10px;display:grid;place-items:center}
   .row label{font-size:15px;min-width:0;overflow-wrap:anywhere}
   .row input{
     width:100%;text-align:left;font:inherit;font-size:15px;padding:9px 11px;border:1px solid var(--line);
@@ -197,7 +216,7 @@
       <svg viewBox="0 0 150 12" fill="none"><path d="M3 8C34 3 96 2 147 6" stroke="#FFCC29" stroke-width="3.2" stroke-linecap="round"/></svg>
     </div>
     <nav>
-      <span class="brand">🇯🇲 My Inflation Rate</span>
+      <span class="brand"><span class="flag" data-icon="flag"></span>My Inflation Rate</span>
       <span class="navlinks">
         <a href="#how">About</a>
         <a href="#how">The Data</a>
@@ -210,9 +229,9 @@
         <h1>Because the average isn't <em>your reality.</em></h1>
         <p class="lede">Jamaica's inflation was 7.9% in August 2026. But your spending is unique. Enter your monthly expenses to see your own inflation rate, how much more you're paying, and what's driving it.</p>
         <div class="badges">
-          <span class="badge"><span class="ico g">🔒</span><span><b>Private</b><span>Stays on your device</span></span></span>
-          <span class="badge"><span class="ico y">⚡</span><span><b>Quick</b><span>Just nine numbers</span></span></span>
-          <span class="badge"><span class="ico b">📊</span><span><b>Real data</b><span>From STATIN</span></span></span>
+          <span class="badge"><span class="ico g" data-icon="lock"></span><span><b>Private</b><span>Stays on your device</span></span></span>
+          <span class="badge"><span class="ico y" data-icon="bolt"></span><span><b>Quick</b><span>Just nine numbers</span></span></span>
+          <span class="badge"><span class="ico b" data-icon="bars"></span><span><b>Real data</b><span>From STATIN</span></span></span>
         </div>
       </div>
 
@@ -220,12 +239,12 @@
         <div class="top"><b>Jamaica inflation (national average)</b><span>August 2026</span></div>
         <div class="natfig">
           <span class="n">7.9%</span>
-          <span class="d">↑ +1.2%<small>vs June 2026 (6.7%)</small></span>
+          <span class="d"><span class="arr" data-icon="up"></span>+1.2%<small>vs June 2026 (6.7%)</small></span>
         </div>
         <div class="natmini">
-          <div><span style="font-size:17px">🍽️</span><span><b style="color:#5EE9A0">10.2%</b><span>Food</span></span></div>
-          <div><span style="font-size:17px">🚗</span><span><b style="color:#FF8B8B">14.6%</b><span>Transport</span></span></div>
-          <div><span style="font-size:17px">🏠</span><span><b style="color:#7DBCF5">4.8%</b><span>Housing</span></span></div>
+          <div><span class="nmi" style="color:#5EE9A0" data-icon="food"></span><span><b style="color:#5EE9A0">10.2%</b><span>Food</span></span></div>
+          <div><span class="nmi" style="color:#FF8B8B" data-icon="transport"></span><span><b style="color:#FF8B8B">14.6%</b><span>Transport</span></span></div>
+          <div><span class="nmi" style="color:#7DBCF5" data-icon="housing"></span><span><b style="color:#7DBCF5">4.8%</b><span>Housing</span></span></div>
         </div>
         <p class="natsrc">Source: STATIN Consumer Price Index, August 2026</p>
       </div>
@@ -241,10 +260,10 @@
           <h2>Your monthly spending</h2>
           <p class="sub">Enter how much you spend in each category (JMD)</p>
         </div>
-        <button class="reset" id="reset">↺ Reset</button>
+        <button class="reset" id="reset"><span data-icon="undo"></span>Reset</button>
       </div>
       <div id="inputs"></div>
-      <p class="foot"><span>ⓘ</span><span>The percentage on the right is the 12-month inflation rate for that category (August 2026, STATIN).</span></p>
+      <p class="foot"><span data-icon="info"></span><span>The percentage on the right is the 12-month inflation rate for that category (August 2026, STATIN).</span></p>
     </section>
 
     <section class="results">
@@ -263,24 +282,24 @@
 
       <div class="twin">
         <div class="green">
-          <span class="ico" style="background:rgba(34,197,94,.16)">📈</span>
+          <span class="ico" style="background:rgba(34,197,94,.16);color:#5EE9A0" data-icon="trend"></span>
           <span><b id="permonth">—</b><span class="k">Extra per month</span><br><span class="s">Compared to last year</span></span>
         </div>
         <div class="coral">
-          <span class="ico" style="background:rgba(255,98,98,.16)">🗓️</span>
+          <span class="ico" style="background:rgba(255,98,98,.16);color:#FF8B8B" data-icon="cal"></span>
           <span><b id="peryear">—</b><span class="k">Extra per year</span><br><span class="s">Compared to last year</span></span>
         </div>
       </div>
 
       <h3>What's driving your inflation?</h3>
       <div id="drivers"></div>
-      <div class="insight"><span>💡</span><span id="insight"></span></div>
+      <div class="insight"><span class="bulb" data-icon="bulb"></span><span id="insight"></span></div>
     </section>
   </div>
 
   <div class="bottom">
     <section class="bcard">
-      <span class="ico" style="background:rgba(255,204,41,.18)">🪙</span>
+      <span class="ico" style="background:rgba(255,204,41,.18);color:#C9931F" data-icon="coins"></span>
       <div>
         <h3>What salary do you need next year?</h3>
         <p>To maintain your current standard of living.</p>
@@ -289,7 +308,7 @@
     </section>
 
     <section class="bcard">
-      <span class="ico" style="background:rgba(66,149,232,.16)">🎯</span>
+      <span class="ico" style="background:rgba(66,149,232,.16);color:#2F7FD4" data-icon="target"></span>
       <div>
         <h3>Adjust the target</h3>
         <p>If you want to get ahead, not just keep pace.</p>
@@ -310,17 +329,46 @@
 </main>
 
 <script>
+const ICONS = {
+  food:  ['0 0 24 24','<path d="M6.25 2.6a.85.85 0 0 1 .85.85v4h.95v-4a.85.85 0 0 1 1.7 0v4h.95v-4a.85.85 0 0 1 1.7 0V8.1a3.1 3.1 0 0 1-2.25 2.98V20.5a1.05 1.05 0 0 1-2.1 0v-9.42A3.1 3.1 0 0 1 5.4 8.1V3.45a.85.85 0 0 1 .85-.85z"/><path d="M17.1 2.6c-1.55 0-2.8 2.9-2.8 6.1 0 2.45.73 4.4 1.79 5.2v6.6a1.05 1.05 0 0 0 2.1 0V3.25c0-.36-.3-.65-.65-.65z"/>'],
+  transport: ['0 0 24 24','<path d="M4 13.5a2.1 2.1 0 0 1 1.42-1.99l.93-3.2A3.15 3.15 0 0 1 9.37 6h5.26a3.15 3.15 0 0 1 3.02 2.31l.93 3.2A2.1 2.1 0 0 1 20 13.5v3.6a1 1 0 0 1-1 1h-1.1a1 1 0 0 1-1-1v-.5H7.1v.5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1zm3.55-2.3h8.9l-.72-2.47A1.15 1.15 0 0 0 14.63 8H9.37a1.15 1.15 0 0 0-1.1.73z"/><circle cx="7.6" cy="14.2" r="1.1"/><circle cx="16.4" cy="14.2" r="1.1"/>'],
+  housing: ['0 0 24 24','<path d="M11.36 2.9a1 1 0 0 1 1.28 0l7.6 6.4a1 1 0 0 1 .36.76V19a2.1 2.1 0 0 1-2.1 2.1h-3.6v-5.4a2.9 2.9 0 0 0-5.8 0v5.4H5.5A2.1 2.1 0 0 1 3.4 19v-8.94a1 1 0 0 1 .36-.76z"/>'],
+  home:  ['0 0 24 24','<path d="M2.6 3.7a.95.95 0 0 1 .95-.95h1.3a1.8 1.8 0 0 1 1.75 1.37l.2.83h13.05a1 1 0 0 1 .97 1.25l-1.53 6.02a2.1 2.1 0 0 1-2.03 1.58H8.6a2.1 2.1 0 0 1-2.04-1.6L4.5 4.65h-.95a.95.95 0 0 1-.95-.95z"/><circle cx="9.3" cy="18.9" r="1.75"/><circle cx="17.3" cy="18.9" r="1.75"/>'],
+  health: ['0 0 24 24','<path d="M12 20.9a1 1 0 0 1-.55-.16C10.9 20.36 3.2 15.1 3.2 9.85A4.95 4.95 0 0 1 12 6.7a4.95 4.95 0 0 1 8.8 3.15c0 5.25-7.7 10.5-8.25 10.89a1 1 0 0 1-.55.16z"/>'],
+  fun:   ['0 0 24 24','<path d="M3.2 6.9A1.9 1.9 0 0 1 5.1 5h13.8a1.9 1.9 0 0 1 1.9 1.9v2.5a1 1 0 0 1-1 1 1.6 1.6 0 0 0 0 3.2 1 1 0 0 1 1 1v2.5a1.9 1.9 0 0 1-1.9 1.9H5.1a1.9 1.9 0 0 1-1.9-1.9v-2.5a1 1 0 0 1 1-1 1.6 1.6 0 0 0 0-3.2 1 1 0 0 1-1-1zm6.6 1.6a.85.85 0 0 0 0 1.7h4.4a.85.85 0 0 0 0-1.7zm0 5.3a.85.85 0 0 0 0 1.7h4.4a.85.85 0 0 0 0-1.7z"/>'],
+  clothes: ['0 0 24 24','<path d="M9.05 3 5.1 5.05a1.7 1.7 0 0 0-.84 2l.98 3.3a1.05 1.05 0 0 0 1.27.72l.79-.2V19.9a1.05 1.05 0 0 0 1.05 1.05h7.3a1.05 1.05 0 0 0 1.05-1.05v-9.03l.79.2a1.05 1.05 0 0 0 1.27-.72l.98-3.3a1.7 1.7 0 0 0-.84-2L14.95 3a3.05 3.05 0 0 1-5.9 0z"/>'],
+  bar:   ['0 0 24 24','<path d="M4.9 3.4h14.2a.8.8 0 0 1 .6 1.33L13.05 12.4v6.5h2.6a1.05 1.05 0 0 1 0 2.1H8.35a1.05 1.05 0 0 1 0-2.1h2.6v-6.5L4.3 4.73a.8.8 0 0 1 .6-1.33z"/>'],
+  other: ['0 0 24 24','<circle cx="5.6" cy="12" r="2"/><circle cx="12" cy="12" r="2"/><circle cx="18.4" cy="12" r="2"/>'],
+  rest:  ['0 0 24 24','<path d="M11.55 2.7a1 1 0 0 1 .9 0l8.3 4.15a1 1 0 0 1 0 1.79l-8.3 4.15a1 1 0 0 1-.9 0L3.25 8.64a1 1 0 0 1 0-1.79z"/><path d="M3.3 11.85a1 1 0 0 1 1.34-.45L12 15.08l7.36-3.68a1 1 0 1 1 .9 1.79l-7.81 3.9a1 1 0 0 1-.9 0l-7.81-3.9a1 1 0 0 1-.44-1.34z" fill-opacity=".55"/>'],
+
+  lock:  ['0 0 24 24','<path d="M12 2.2A4.9 4.9 0 0 0 7.1 7.1V10H6.7A1.8 1.8 0 0 0 4.9 11.8v7.5A1.8 1.8 0 0 0 6.7 21.1h10.6a1.8 1.8 0 0 0 1.8-1.8v-7.5A1.8 1.8 0 0 0 17.3 10h-.4V7.1A4.9 4.9 0 0 0 12 2.2zm0 2.1a2.8 2.8 0 0 1 2.8 2.8V10H9.2V7.1A2.8 2.8 0 0 1 12 4.3z"/>'],
+  bolt:  ['0 0 24 24','<path d="M13.6 1.9a.85.85 0 0 1 .82 1.06L12.9 9.1h3.9a.85.85 0 0 1 .68 1.36l-7.9 10.5a.85.85 0 0 1-1.5-.72l1.52-6.14H5.7a.85.85 0 0 1-.68-1.36l7.9-10.5a.85.85 0 0 1 .68-.34z"/>'],
+  bars:  ['0 0 24 24','<rect x="3.6" y="13.2" width="4" height="7.2" rx="1.3"/><rect x="10" y="8.4" width="4" height="12" rx="1.3"/><rect x="16.4" y="3.6" width="4" height="16.8" rx="1.3"/>'],
+  trend: ['0 0 24 24','<path d="M20.4 5.6h-5.2a1.1 1.1 0 0 0 0 2.2h2.55l-5.05 5.05-3.02-3.02a1.1 1.1 0 0 0-1.56 0l-5 5a1.1 1.1 0 1 0 1.56 1.56l4.22-4.22 3.02 3.02a1.1 1.1 0 0 0 1.56 0l5.83-5.83v2.55a1.1 1.1 0 0 0 2.2 0V6.7a1.1 1.1 0 0 0-1.1-1.1z"/>'],
+  cal:   ['0 0 24 24','<path d="M7.6 2.4a1 1 0 0 1 1 1v1h6.8v-1a1 1 0 1 1 2 0v1h.5A2.7 2.7 0 0 1 20.6 7.1v11.2a2.7 2.7 0 0 1-2.7 2.7H6.1a2.7 2.7 0 0 1-2.7-2.7V7.1A2.7 2.7 0 0 1 6.1 4.4h.5v-1a1 1 0 0 1 1-1zM5.4 9.8v8.5a.7.7 0 0 0 .7.7h11.8a.7.7 0 0 0 .7-.7V9.8z"/>'],
+  bulb:  ['0 0 24 24','<path d="M12 2.2a7.1 7.1 0 0 0-4.32 12.73c.53.41.84 1.02.84 1.67v.3h6.96v-.3c0-.65.31-1.26.84-1.67A7.1 7.1 0 0 0 12 2.2z"/><rect x="8.5" y="18.3" width="7" height="1.9" rx=".95"/><rect x="9.9" y="20.8" width="4.2" height="1.7" rx=".85"/>'],
+  coins: ['0 0 24 24','<ellipse cx="12" cy="6.3" rx="7.2" ry="3.3"/><path d="M4.8 9.4v2.7c0 1.82 3.22 3.3 7.2 3.3s7.2-1.48 7.2-3.3V9.4c-1.5 1.33-4.2 2.1-7.2 2.1s-5.7-.77-7.2-2.1z"/><path d="M4.8 15.3V18c0 1.82 3.22 3.3 7.2 3.3s7.2-1.48 7.2-3.3v-2.7c-1.5 1.33-4.2 2.1-7.2 2.1s-5.7-.77-7.2-2.1z" fill-opacity=".62"/>'],
+  target:['0 0 24 24','<path d="M12 2.4a9.6 9.6 0 1 0 0 19.2 9.6 9.6 0 0 0 0-19.2zm0 2.5a7.1 7.1 0 1 1 0 14.2 7.1 7.1 0 0 1 0-14.2z"/><path d="M12 7.6a4.4 4.4 0 1 0 0 8.8 4.4 4.4 0 0 0 0-8.8zm0 2.5a1.9 1.9 0 1 1 0 3.8 1.9 1.9 0 0 1 0-3.8z"/>'],
+  undo:  ['0 0 24 24','<path d="M4.5 3.9a1.05 1.05 0 0 1 1.05 1.05v2.2A8.6 8.6 0 1 1 3.45 13a1.05 1.05 0 1 1 2.09.22A6.5 6.5 0 1 0 7.3 8.35H9.4a1.05 1.05 0 0 1 0 2.1H4.5A1.05 1.05 0 0 1 3.45 9.4V4.95A1.05 1.05 0 0 1 4.5 3.9z"/>'],
+  info:  ['0 0 24 24','<path d="M12 2.6a9.4 9.4 0 1 0 0 18.8 9.4 9.4 0 0 0 0-18.8zm0 3.4a1.35 1.35 0 1 1 0 2.7 1.35 1.35 0 0 1 0-2.7zm0 4.3a1.1 1.1 0 0 1 1.1 1.1v5.3a1.1 1.1 0 0 1-2.2 0v-5.3A1.1 1.1 0 0 1 12 10.3z"/>'],
+  up:    ['0 0 24 24','<path d="M12 3.6a1.1 1.1 0 0 1 .82.37l5.6 6.3a1.1 1.1 0 0 1-1.64 1.46l-3.68-4.14V19.3a1.1 1.1 0 0 1-2.2 0V7.59l-3.68 4.14a1.1 1.1 0 1 1-1.64-1.46l5.6-6.3A1.1 1.1 0 0 1 12 3.6z"/>'],
+  flag:  ['0 0 32 22','<defs><clipPath id="jaflag"><rect width="32" height="22" rx="3.2"/></clipPath></defs><g clip-path="url(#jaflag)"><rect width="32" height="22" fill="#009B3A"/><path d="M0 0 11.6 11 0 22z" fill="#111"/><path d="M32 0 20.4 11 32 22z" fill="#111"/><path d="M0 0 32 22M32 0 0 22" stroke="#FFCC29" stroke-width="4.6" fill="none"/></g>']
+};
+const ic = n => { const d = ICONS[n]; return d ? `<svg class="gi" viewBox="${d[0]}" fill="currentColor" aria-hidden="true">${d[1]}</svg>` : ""; };
+
 const CATS = [
-  { k:"food",      name:"Food & non-alcoholic beverages", short:"Food",          icon:"🍽️", tint:"rgba(34,197,94,.14)",  bar:"#22C55E", rate:10.2, start:35000 },
-  { k:"transport", name:"Transport",                      short:"Transport",     icon:"🚗", tint:"rgba(255,98,98,.14)",  bar:"#FF6262", rate:14.6, start:10000 },
-  { k:"housing",   name:"Housing, water, electricity, gas",short:"Housing",      icon:"🏠", tint:"rgba(66,149,232,.14)", bar:"#4295E8", rate: 4.8, start:60000 },
-  { k:"home",      name:"Furnishings & household items",   short:"Household",    icon:"🛒", tint:"rgba(245,158,11,.14)", bar:"#F59E0B", rate: 3.4, start:15000 },
-  { k:"health",    name:"Health",                          short:"Health",       icon:"❤️", tint:"rgba(255,98,98,.12)",  bar:"#FF8B8B", rate: 3.9, start: 8000 },
-  { k:"fun",       name:"Recreation, sport & culture",     short:"Recreation",   icon:"🍿", tint:"rgba(245,158,11,.12)", bar:"#FFCC29", rate: 3.2, start:10000 },
-  { k:"clothes",   name:"Clothing & footwear",             short:"Clothing",     icon:"👕", tint:"rgba(66,149,232,.12)", bar:"#7DBCF5", rate: 2.9, start: 6000 },
-  { k:"bar",       name:"Alcohol & tobacco",               short:"Alcohol",      icon:"🍺", tint:"rgba(255,204,41,.16)", bar:"#E0B33C", rate: 6.7, start: 4000 },
-  { k:"other",     name:"Other goods & services",          short:"Other",        icon:"•••", tint:"rgba(90,101,114,.12)", bar:"#94A3B8", rate: 4.5, start:12000 }
+  { k:"food",      name:"Food & non-alcoholic beverages", short:"Food",          icon:"food", tint:"rgba(34,197,94,.14)",  bar:"#22C55E", rate:10.2, start:35000 },
+  { k:"transport", name:"Transport",                      short:"Transport",     icon:"transport", tint:"rgba(255,98,98,.14)",  bar:"#FF6262", rate:14.6, start:10000 },
+  { k:"housing",   name:"Housing, water, electricity, gas",short:"Housing",      icon:"housing", tint:"rgba(66,149,232,.14)", bar:"#4295E8", rate: 4.8, start:60000 },
+  { k:"home",      name:"Furnishings & household items",   short:"Household",    icon:"home", tint:"rgba(245,158,11,.14)", bar:"#F59E0B", rate: 3.4, start:15000 },
+  { k:"health",    name:"Health",                          short:"Health",       icon:"health", tint:"rgba(255,98,98,.12)",  bar:"#FF8B8B", rate: 3.9, start: 8000 },
+  { k:"fun",       name:"Recreation, sport & culture",     short:"Recreation",   icon:"fun", tint:"rgba(245,158,11,.12)", bar:"#FFCC29", rate: 3.2, start:10000 },
+  { k:"clothes",   name:"Clothing & footwear",             short:"Clothing",     icon:"clothes", tint:"rgba(66,149,232,.12)", bar:"#7DBCF5", rate: 2.9, start: 6000 },
+  { k:"bar",       name:"Alcohol & tobacco",               short:"Alcohol",      icon:"bar", tint:"rgba(255,204,41,.16)", bar:"#E0B33C", rate: 6.7, start: 4000 },
+  { k:"other",     name:"Other goods & services",          short:"Other",        icon:"other", tint:"rgba(90,101,114,.12)", bar:"#94A3B8", rate: 4.5, start:12000 }
 ];
+document.querySelectorAll("[data-icon]").forEach(e => { e.innerHTML = ic(e.dataset.icon); });
+
 const HEADLINE = 7.9;
 const $ = id => document.getElementById(id);
 const jd = n => "J$" + Math.round(n).toLocaleString("en-JM");
@@ -328,7 +376,7 @@ const jd = n => "J$" + Math.round(n).toLocaleString("en-JM");
 $("inputs").innerHTML = CATS.map(c => {
   const cls = c.rate >= 8 ? "high" : c.rate <= 5 ? "low" : "mid";
   return `<div class="row">
-    <span class="tile" style="background:${c.tint}">${c.icon}</span>
+    <span class="tile" style="background:${c.tint};color:${c.bar}">${ic(c.icon)}</span>
     <label for="${c.k}">${c.name}</label>
     <input id="${c.k}" type="number" min="0" step="500" inputmode="numeric" value="${c.start}">
     <span class="rate ${cls}">${c.rate.toFixed(1)}%</span>
@@ -370,13 +418,13 @@ function calc(){
   const top = ranked.slice(0, 4);
   const restPts = ranked.slice(4).reduce((t, p) => t + p.pts, 0);
   const shown = restPts > 0.05
-    ? [...top, { short: "Everything else", icon: "➕", bar: "#5A6572", pts: restPts }]
+    ? [...top, { short: "Everything else", icon: "rest", bar: "#7A8699", pts: restPts }]
     : top;
   const max = Math.max(...shown.map(s => s.pts), 0.01);
 
   $("drivers").innerHTML = shown.map(s => `
     <div class="driver">
-      <span>${s.icon}</span>
+      <span class="dic" style="color:${s.bar}">${ic(s.icon)}</span>
       <span class="nm">${s.short}</span>
       <span class="track"><span class="fill" style="width:${Math.max(4, s.pts / max * 100)}%;background:${s.bar}"></span></span>
       <span class="pts">${s.pts.toFixed(1)}%</span>
