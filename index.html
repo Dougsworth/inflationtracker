@@ -229,6 +229,7 @@
     .actions{flex-wrap:wrap}
   }
   @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+.export:disabled{opacity:.45;cursor:default}
 </style>
 </head>
 <body>
@@ -371,25 +372,9 @@
 
 <script>
 const ICONS = {
-  food:  ['0 0 24 24','<path d="M6.25 2.6a.85.85 0 0 1 .85.85v4h.95v-4a.85.85 0 0 1 1.7 0v4h.95v-4a.85.85 0 0 1 1.7 0V8.1a3.1 3.1 0 0 1-2.25 2.98V20.5a1.05 1.05 0 0 1-2.1 0v-9.42A3.1 3.1 0 0 1 5.4 8.1V3.45a.85.85 0 0 1 .85-.85z"/><path d="M17.1 2.6c-1.55 0-2.8 2.9-2.8 6.1 0 2.45.73 4.4 1.79 5.2v6.6a1.05 1.05 0 0 0 2.1 0V3.25c0-.36-.3-.65-.65-.65z"/>'],
-  transport: ['0 0 24 24','<path d="M4 13.5a2.1 2.1 0 0 1 1.42-1.99l.93-3.2A3.15 3.15 0 0 1 9.37 6h5.26a3.15 3.15 0 0 1 3.02 2.31l.93 3.2A2.1 2.1 0 0 1 20 13.5v3.6a1 1 0 0 1-1 1h-1.1a1 1 0 0 1-1-1v-.5H7.1v.5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1zm3.55-2.3h8.9l-.72-2.47A1.15 1.15 0 0 0 14.63 8H9.37a1.15 1.15 0 0 0-1.1.73z"/><circle cx="7.6" cy="14.2" r="1.1"/><circle cx="16.4" cy="14.2" r="1.1"/>'],
-  housing: ['0 0 24 24','<path d="M11.36 2.9a1 1 0 0 1 1.28 0l7.6 6.4a1 1 0 0 1 .36.76V19a2.1 2.1 0 0 1-2.1 2.1h-3.6v-5.4a2.9 2.9 0 0 0-5.8 0v5.4H5.5A2.1 2.1 0 0 1 3.4 19v-8.94a1 1 0 0 1 .36-.76z"/>'],
-  home:  ['0 0 24 24','<path d="M2.6 3.7a.95.95 0 0 1 .95-.95h1.3a1.8 1.8 0 0 1 1.75 1.37l.2.83h13.05a1 1 0 0 1 .97 1.25l-1.53 6.02a2.1 2.1 0 0 1-2.03 1.58H8.6a2.1 2.1 0 0 1-2.04-1.6L4.5 4.65h-.95a.95.95 0 0 1-.95-.95z"/><circle cx="9.3" cy="18.9" r="1.75"/><circle cx="17.3" cy="18.9" r="1.75"/>'],
-  health: ['0 0 24 24','<path d="M12 20.9a1 1 0 0 1-.55-.16C10.9 20.36 3.2 15.1 3.2 9.85A4.95 4.95 0 0 1 12 6.7a4.95 4.95 0 0 1 8.8 3.15c0 5.25-7.7 10.5-8.25 10.89a1 1 0 0 1-.55.16z"/>'],
-  fun:   ['0 0 24 24','<path d="M3.2 6.9A1.9 1.9 0 0 1 5.1 5h13.8a1.9 1.9 0 0 1 1.9 1.9v2.5a1 1 0 0 1-1 1 1.6 1.6 0 0 0 0 3.2 1 1 0 0 1 1 1v2.5a1.9 1.9 0 0 1-1.9 1.9H5.1a1.9 1.9 0 0 1-1.9-1.9v-2.5a1 1 0 0 1 1-1 1.6 1.6 0 0 0 0-3.2 1 1 0 0 1-1-1zm6.6 1.6a.85.85 0 0 0 0 1.7h4.4a.85.85 0 0 0 0-1.7zm0 5.3a.85.85 0 0 0 0 1.7h4.4a.85.85 0 0 0 0-1.7z"/>'],
-  clothes: ['0 0 24 24','<path d="M9.05 3 5.1 5.05a1.7 1.7 0 0 0-.84 2l.98 3.3a1.05 1.05 0 0 0 1.27.72l.79-.2V19.9a1.05 1.05 0 0 0 1.05 1.05h7.3a1.05 1.05 0 0 0 1.05-1.05v-9.03l.79.2a1.05 1.05 0 0 0 1.27-.72l.98-3.3a1.7 1.7 0 0 0-.84-2L14.95 3a3.05 3.05 0 0 1-5.9 0z"/>'],
-  bar:   ['0 0 24 24','<path d="M4.9 3.4h14.2a.8.8 0 0 1 .6 1.33L13.05 12.4v6.5h2.6a1.05 1.05 0 0 1 0 2.1H8.35a1.05 1.05 0 0 1 0-2.1h2.6v-6.5L4.3 4.73a.8.8 0 0 1 .6-1.33z"/>'],
-  other: ['0 0 24 24','<circle cx="5.6" cy="12" r="2"/><circle cx="12" cy="12" r="2"/><circle cx="18.4" cy="12" r="2"/>'],
-  rest:  ['0 0 24 24','<path d="M11.55 2.7a1 1 0 0 1 .9 0l8.3 4.15a1 1 0 0 1 0 1.79l-8.3 4.15a1 1 0 0 1-.9 0L3.25 8.64a1 1 0 0 1 0-1.79z"/><path d="M3.3 11.85a1 1 0 0 1 1.34-.45L12 15.08l7.36-3.68a1 1 0 1 1 .9 1.79l-7.81 3.9a1 1 0 0 1-.9 0l-7.81-3.9a1 1 0 0 1-.44-1.34z" fill-opacity=".55"/>'],
-
   lock:  ['0 0 24 24','<path d="M12 2.2A4.9 4.9 0 0 0 7.1 7.1V10H6.7A1.8 1.8 0 0 0 4.9 11.8v7.5A1.8 1.8 0 0 0 6.7 21.1h10.6a1.8 1.8 0 0 0 1.8-1.8v-7.5A1.8 1.8 0 0 0 17.3 10h-.4V7.1A4.9 4.9 0 0 0 12 2.2zm0 2.1a2.8 2.8 0 0 1 2.8 2.8V10H9.2V7.1A2.8 2.8 0 0 1 12 4.3z"/>'],
   bolt:  ['0 0 24 24','<path d="M13.6 1.9a.85.85 0 0 1 .82 1.06L12.9 9.1h3.9a.85.85 0 0 1 .68 1.36l-7.9 10.5a.85.85 0 0 1-1.5-.72l1.52-6.14H5.7a.85.85 0 0 1-.68-1.36l7.9-10.5a.85.85 0 0 1 .68-.34z"/>'],
   bars:  ['0 0 24 24','<rect x="3.6" y="13.2" width="4" height="7.2" rx="1.3"/><rect x="10" y="8.4" width="4" height="12" rx="1.3"/><rect x="16.4" y="3.6" width="4" height="16.8" rx="1.3"/>'],
-  trend: ['0 0 24 24','<path d="M20.4 5.6h-5.2a1.1 1.1 0 0 0 0 2.2h2.55l-5.05 5.05-3.02-3.02a1.1 1.1 0 0 0-1.56 0l-5 5a1.1 1.1 0 1 0 1.56 1.56l4.22-4.22 3.02 3.02a1.1 1.1 0 0 0 1.56 0l5.83-5.83v2.55a1.1 1.1 0 0 0 2.2 0V6.7a1.1 1.1 0 0 0-1.1-1.1z"/>'],
-  cal:   ['0 0 24 24','<path d="M7.6 2.4a1 1 0 0 1 1 1v1h6.8v-1a1 1 0 1 1 2 0v1h.5A2.7 2.7 0 0 1 20.6 7.1v11.2a2.7 2.7 0 0 1-2.7 2.7H6.1a2.7 2.7 0 0 1-2.7-2.7V7.1A2.7 2.7 0 0 1 6.1 4.4h.5v-1a1 1 0 0 1 1-1zM5.4 9.8v8.5a.7.7 0 0 0 .7.7h11.8a.7.7 0 0 0 .7-.7V9.8z"/>'],
-  bulb:  ['0 0 24 24','<path d="M12 2.2a7.1 7.1 0 0 0-4.32 12.73c.53.41.84 1.02.84 1.67v.3h6.96v-.3c0-.65.31-1.26.84-1.67A7.1 7.1 0 0 0 12 2.2z"/><rect x="8.5" y="18.3" width="7" height="1.9" rx=".95"/><rect x="9.9" y="20.8" width="4.2" height="1.7" rx=".85"/>'],
-  coins: ['0 0 24 24','<ellipse cx="12" cy="6.3" rx="7.2" ry="3.3"/><path d="M4.8 9.4v2.7c0 1.82 3.22 3.3 7.2 3.3s7.2-1.48 7.2-3.3V9.4c-1.5 1.33-4.2 2.1-7.2 2.1s-5.7-.77-7.2-2.1z"/><path d="M4.8 15.3V18c0 1.82 3.22 3.3 7.2 3.3s7.2-1.48 7.2-3.3v-2.7c-1.5 1.33-4.2 2.1-7.2 2.1s-5.7-.77-7.2-2.1z" fill-opacity=".62"/>'],
-  target:['0 0 24 24','<path d="M12 2.4a9.6 9.6 0 1 0 0 19.2 9.6 9.6 0 0 0 0-19.2zm0 2.5a7.1 7.1 0 1 1 0 14.2 7.1 7.1 0 0 1 0-14.2z"/><path d="M12 7.6a4.4 4.4 0 1 0 0 8.8 4.4 4.4 0 0 0 0-8.8zm0 2.5a1.9 1.9 0 1 1 0 3.8 1.9 1.9 0 0 1 0-3.8z"/>'],
   undo:  ['0 0 24 24','<path d="M4.5 3.9a1.05 1.05 0 0 1 1.05 1.05v2.2A8.6 8.6 0 1 1 3.45 13a1.05 1.05 0 1 1 2.09.22A6.5 6.5 0 1 0 7.3 8.35H9.4a1.05 1.05 0 0 1 0 2.1H4.5A1.05 1.05 0 0 1 3.45 9.4V4.95A1.05 1.05 0 0 1 4.5 3.9z"/>'],
   info:  ['0 0 24 24','<path d="M12 2.6a9.4 9.4 0 1 0 0 18.8 9.4 9.4 0 0 0 0-18.8zm0 3.4a1.35 1.35 0 1 1 0 2.7 1.35 1.35 0 0 1 0-2.7zm0 4.3a1.1 1.1 0 0 1 1.1 1.1v5.3a1.1 1.1 0 0 1-2.2 0v-5.3A1.1 1.1 0 0 1 12 10.3z"/>'],
   up:    ['0 0 24 24','<path d="M12 3.6a1.1 1.1 0 0 1 .82.37l5.6 6.3a1.1 1.1 0 0 1-1.64 1.46l-3.68-4.14V19.3a1.1 1.1 0 0 1-2.2 0V7.59l-3.68 4.14a1.1 1.1 0 1 1-1.64-1.46l5.6-6.3A1.1 1.1 0 0 1 12 3.6z"/>'],
@@ -400,15 +385,15 @@ const ICONS = {
 const ic = n => { const d = ICONS[n]; return d ? `<svg class="gi" viewBox="${d[0]}" fill="currentColor" aria-hidden="true">${d[1]}</svg>` : ""; };
 
 const CATS = [
-  { k:"food",      name:"Food & non-alcoholic beverages", short:"Food",          icon:"food", tint:"rgba(34,197,94,.14)",  bar:"#22C55E", rate:10.2, start:35000 },
-  { k:"transport", name:"Transport",                      short:"Transport",     icon:"transport", tint:"rgba(255,98,98,.14)",  bar:"#FF6262", rate:14.6, start:10000 },
-  { k:"housing",   name:"Housing, water, electricity, gas",short:"Housing",      icon:"housing", tint:"rgba(66,149,232,.14)", bar:"#4295E8", rate: 4.8, start:60000 },
-  { k:"home",      name:"Furnishings & household items",   short:"Household",    icon:"home", tint:"rgba(245,158,11,.14)", bar:"#F59E0B", rate: 3.4, start:15000 },
-  { k:"health",    name:"Health",                          short:"Health",       icon:"health", tint:"rgba(255,98,98,.12)",  bar:"#FF8B8B", rate: 3.9, start: 8000 },
-  { k:"fun",       name:"Recreation, sport & culture",     short:"Recreation",   icon:"fun", tint:"rgba(245,158,11,.12)", bar:"#FFCC29", rate: 3.2, start:10000 },
-  { k:"clothes",   name:"Clothing & footwear",             short:"Clothing",     icon:"clothes", tint:"rgba(66,149,232,.12)", bar:"#7DBCF5", rate: 2.9, start: 6000 },
-  { k:"bar",       name:"Alcohol & tobacco",               short:"Alcohol",      icon:"bar", tint:"rgba(255,204,41,.16)", bar:"#E0B33C", rate: 6.7, start: 4000 },
-  { k:"other",     name:"Other goods & services",          short:"Other",        icon:"other", tint:"rgba(90,101,114,.12)", bar:"#94A3B8", rate: 4.5, start:12000 }
+  { k:"food",      name:"Food & non-alcoholic beverages", short:"Food",          rate:10.2, start:35000 },
+  { k:"transport", name:"Transport",                      short:"Transport",     rate:14.6, start:10000 },
+  { k:"housing",   name:"Housing, water, electricity, gas",short:"Housing",      rate: 4.8, start:60000 },
+  { k:"home",      name:"Furnishings & household items",   short:"Household",    rate: 3.4, start:15000 },
+  { k:"health",    name:"Health",                          short:"Health",       rate: 3.9, start: 8000 },
+  { k:"fun",       name:"Recreation, sport & culture",     short:"Recreation",   rate: 3.2, start:10000 },
+  { k:"clothes",   name:"Clothing & footwear",             short:"Clothing",     rate: 2.9, start: 6000 },
+  { k:"bar",       name:"Alcohol & tobacco",               short:"Alcohol",      rate: 6.7, start: 4000 },
+  { k:"other",     name:"Other goods & services",          short:"Other",        rate: 4.5, start:12000 }
 ];
 document.querySelectorAll("[data-icon]").forEach(e => { e.innerHTML = ic(e.dataset.icon); });
 
@@ -475,12 +460,15 @@ function calc(opts = {}){
     LAST = null; driversKey = "";
     $("rate").textContent = "—";
     $("verdict").textContent = "Enter what you spend to see your rate";
-    ["permonth","peryear","needed","needed2"].forEach(id => $(id).textContent = "—");
-    $("drivers").innerHTML = ""; $("insight").textContent = ""; $("neededNote").textContent = "";
-    $("export").disabled = true;
+    $("rate").style.color = "";
+    ["permonth","peryear","sWorth","sLost","sStand","sAhead"].forEach(id => $(id).textContent = "—");
+    ["sWorthNote","sLostYr","sStandNote","sAheadNote","sFoot","insight"].forEach(id => $(id).textContent = "");
+    $("sAhead").style.opacity = "";
+    $("drivers").innerHTML = "";
+    $("export").disabled = $("share").disabled = true;
     return;
   }
-  $("export").disabled = false;
+  $("export").disabled = $("share").disabled = false;
 
   const mine = (now / then - 1) * 100;
   const gap = mine - HEADLINE;
@@ -512,7 +500,7 @@ function calc(opts = {}){
   const top = ranked.slice(0, 4);
   const restPts = ranked.slice(4).reduce((t, p) => t + p.pts, 0);
   const shown = restPts > 0.05
-    ? [...top, { short: "Everything else", icon: "rest", bar: "#7A8699", pts: restPts }]
+    ? [...top, { short: "Everything else", pts: restPts }]
     : top;
   const max = Math.max(...shown.map(s => s.pts), 0.01);
 
@@ -595,121 +583,7 @@ $("reset").addEventListener("click", () => {
   $("target").value = "0";
   $("salary").value = "";
   driversKey = "";
-  
-/* ---------- shareable image ---------- */
-function drawCard(){
-  const L = LAST; if (!L) return null;
-  const S = 1080, c = document.createElement("canvas");
-  c.width = S; c.height = S;
-  const x = c.getContext("2d");
-  const F = (w, s) => `${w} ${s}px system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif`;
-
-  const bg = x.createLinearGradient(0, 0, S * .7, S);
-  bg.addColorStop(0, "#0F1B30"); bg.addColorStop(.55, "#0B1220"); bg.addColorStop(1, "#111C2F");
-  x.fillStyle = bg; x.fillRect(0, 0, S, S);
-  x.fillStyle = "#FFCC29"; x.fillRect(0, 0, S, 10);
-
-  // flag mark
-  const fx = 72, fy = 74, fw = 62, fh = 43;
-  x.save(); x.beginPath(); x.roundRect(fx, fy, fw, fh, 7); x.clip();
-  x.fillStyle = "#009B3A"; x.fillRect(fx, fy, fw, fh);
-  x.fillStyle = "#111";
-  x.beginPath(); x.moveTo(fx, fy); x.lineTo(fx + fw * .36, fy + fh / 2); x.lineTo(fx, fy + fh); x.fill();
-  x.beginPath(); x.moveTo(fx + fw, fy); x.lineTo(fx + fw * .64, fy + fh / 2); x.lineTo(fx + fw, fy + fh); x.fill();
-  x.strokeStyle = "#FFCC29"; x.lineWidth = 9;
-  x.beginPath(); x.moveTo(fx, fy); x.lineTo(fx + fw, fy + fh); x.moveTo(fx + fw, fy); x.lineTo(fx, fy + fh); x.stroke();
-  x.restore();
-
-  x.fillStyle = "#fff"; x.font = F(600, 38); x.textBaseline = "middle";
-  x.fillText("My Inflation Rate", fx + fw + 20, fy + fh / 2 + 1);
-
-  const above = L.mine > HEADLINE + .05;
-  x.textAlign = "center"; x.textBaseline = "alphabetic";
-  x.fillStyle = "#94A3B8"; x.font = F(600, 27);
-  x.fillText("My personal inflation rate", S / 2, 265);
-
-  x.fillStyle = above ? "#FF8B8B" : "#5EE9A0"; x.font = F(500, 210);
-  x.fillText(L.mine.toFixed(1) + "%", S / 2, 445);
-
-  x.fillStyle = "#CBD5E1"; x.font = F(500, 33);
-  const diff = Math.abs(L.mine - HEADLINE).toFixed(1);
-  x.fillText(Math.abs(L.mine - HEADLINE) < .05
-    ? `Same as Jamaica's national average of ${HEADLINE}%`
-    : `${diff} points ${above ? "above" : "below"} Jamaica's ${HEADLINE}% average`, S / 2, 505);
-
-  x.strokeStyle = "rgba(255,255,255,.12)"; x.lineWidth = 2;
-  x.beginPath(); x.moveTo(90, 566); x.lineTo(S - 90, 566); x.stroke();
-
-  x.textAlign = "left"; x.fillStyle = "#fff"; x.font = F(600, 30);
-  x.fillText("What's driving it", 90, 625);
-
-  const rows = L.ranked.slice(0, 3);
-  const mx = Math.max(...rows.map(r => r.pts), .01);
-  rows.forEach((r, i) => {
-    const y = 690 + i * 78;
-    x.fillStyle = "#E2E8F0"; x.font = F(500, 28);
-    x.fillText(r.short, 90, y + 9);
-    const bx = 420, bw = 440;
-    x.fillStyle = "rgba(255,255,255,.10)";
-    x.beginPath(); x.roundRect(bx, y - 9, bw, 18, 9); x.fill();
-    x.fillStyle = i === 0 ? "#FFCC29" : "#7A8699";
-    x.beginPath(); x.roundRect(bx, y - 9, Math.max(22, bw * r.pts / mx), 18, 9); x.fill();
-    x.textAlign = "right"; x.fillStyle = "#fff"; x.font = F(600, 27);
-    x.fillText(r.pts.toFixed(1) + "%", S - 90, y + 9);
-    x.textAlign = "left";
-  });
-
-  x.textAlign = "center"; x.fillStyle = "#FFCC29"; x.font = F(600, 27);
-  x.fillText("Same Jamaica. Different realities.", S / 2, 945);
-  x.fillStyle = "#7C8BA1"; x.font = F(500, 24);
-  const host = (location.host || "").replace(/^www\./, "");
-  x.fillText(host ? `Work out yours at ${host}` : "Work out your own rate", S / 2, 990);
-  return c;
-}
-
-const modal = $("modal");
-let shareBlobUrl = null;
-
-function closeModal(){
-  modal.hidden = true;
-  if (shareBlobUrl){ URL.revokeObjectURL(shareBlobUrl); shareBlobUrl = null; }
-}
-$("modalClose").addEventListener("click", closeModal);
-modal.addEventListener("click", e => { if (e.target === modal) closeModal(); });
-addEventListener("keydown", e => { if (e.key === "Escape" && !modal.hidden) closeModal(); });
-
-$("share").addEventListener("click", () => {
-  const c = drawCard(); if (!c) return;
-  const png = c.toDataURL("image/png");
-  $("shareImg").src = png;
-  modal.hidden = false;
-  c.toBlob(b => {
-    if (!b) return;
-    if (shareBlobUrl) URL.revokeObjectURL(shareBlobUrl);
-    shareBlobUrl = URL.createObjectURL(b);
-  }, "image/png");
-});
-
-$("shareDl").addEventListener("click", async () => {
-  const c = drawCard(); if (!c) return;
-  const name = `my-inflation-rate-${new Date().toISOString().slice(0, 10)}.png`;
-  const blob = await new Promise(r => c.toBlob(r, "image/png"));
-  // native share sheet first on phones, then a normal download
-  try {
-    const file = new File([blob], name, { type: "image/png" });
-    if (navigator.canShare && navigator.canShare({ files: [file] })){
-      await navigator.share({ files: [file], title: "My inflation rate" });
-      return;
-    }
-  } catch(e){}
-  try {
-    const url = shareBlobUrl || URL.createObjectURL(blob);
-    const a = Object.assign(document.createElement("a"), { href: url, download: name });
-    document.body.appendChild(a); a.click(); a.remove();
-  } catch(e){}
-});
-
-calc({ grow: true });
+  calc({ grow: true });
 });
 
 /* ---------- CSV export ---------- */
